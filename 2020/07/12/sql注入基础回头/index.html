@@ -10,7 +10,7 @@
     
     
     
-    <title>search | Hexo</title>
+    <title>sql注入基础回头 | Hexo</title>
     <link href="https://Edmund0A.github.io" rel="prefetch" />
 
     
@@ -150,215 +150,77 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 gal-right" id="mainstay">
-                    <!-- 搜索页面(尽可能接近ZanBlog搜索功能) -->
+                    
+<article class="article well article-body" id="article">
+    <div class="breadcrumb">
+        <i class="fa fa-home"></i>
+        <a href="https://Edmund0A.github.io">Hexo</a>
+        >
+        <span>sql注入基础回头</span>
+    </div>
+    <!-- 大型设备详细文章 -->
+    <div class="hidden-xs">
+        <div class="title-article">
+            <h1>
+                <a href="/2020/07/12/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%E5%9B%9E%E5%A4%B4/">sql注入基础回头</a>
+            </h1>
+        </div>
+        <div class="tag-article">
+            
+            <span class="label label-gal">
+                <i class="fa fa-calendar"></i> 2020-07-12
+            </span>
+            
+        </div>
+    </div>
+    <!-- 小型设备详细文章 -->
+    <div class="visible-xs">
+        <center>
+            <div class="title-article">
+                <h4>
+                    <a href="/2020/07/12/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%E5%9B%9E%E5%A4%B4/">sql注入基础回头</a>
+                </h4>
+            </div>
+            <p>
+                <i class="fa fa-calendar"></i> 2020-07-12
+            </p>
+            <p>
+                
+                
+            </p>
+        </center>
+    </div>
+    <div class="content-article">
+        <p>🔺⚪▲</p>
+<h1 id="🔺sql注入的概念"><a href="#🔺sql注入的概念" class="headerlink" title="🔺sql注入的概念"></a><strong>🔺sql注入的概念</strong></h1><p> sql注入是指应用对于使用者所输入的非法恶意语句的审查未经过判断或过滤不严，导致使用者刻意将恶意sql查询或添加语句输入参数中，通过欺骗数据库进行非授权的恶意查询，进行解析攻击。</p>
+<h1 id="🔺web三层架构的解析"><a href="#🔺web三层架构的解析" class="headerlink" title="🔺web三层架构的解析"></a><strong>🔺web三层架构的解析</strong></h1><p>三层架构就是遵循符合“高内聚，低耦合”思想，将各个功能模块划分为<strong>表示层</strong>（UI）、<strong>业务逻辑层</strong>（BLL）和<strong>数据访问层</strong>（DAL）三层架构，各层之间采用接口相互访问，并通过<strong>对象模型的实体类</strong>作为数据传递的载体，不同的对象模型的实体类一般对应于数据库的不同表，实体类的属性与数据库表的字段名一致。（摘自<a href="https://baike.baidu.com/item/%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84/11031448?fr=aladdin" target="_blank" rel="noopener">百度百科词条</a>）</p>
+<h1 id="🔺sql注入原理"><a href="#🔺sql注入原理" class="headerlink" title="🔺sql注入原理"></a>🔺sql注入原理</h1><p>每当我们访问动态网页时, Web 服务器会向数据访问层发起 Sql 查询请求，如果权限验证通过就会执行 Sql 语句。结合用户的输入数据动态构造 Sql 语句，如果用户输入的数据被构造成恶意 Sql 代码，Web 应用又未对动态构造的 Sql 语句使用的参数进行审查，则会造成恶意语句的渗透，便是sql注入的基本形式。</p>
+<h2 id="⚪sql注入影响"><a href="#⚪sql注入影响" class="headerlink" title="⚪sql注入影响"></a>⚪sql注入影响</h2><p>▲ 攻击者不经授权便可获取到用户数据，借此盗取用户隐私信息；<br>▲ 若网站拥有写入权限，攻击者甚至可以写入木马，对网站造成极大损害；<br>▲ 攻击者拥有对其网站数据库的修改权限，可以肆意更改数据库中的内容；<br>▲ 攻击者可以通过其他步骤获取到服务器的最高权限，并通过后门等方法，对服务器进行控制修改与操作。</p>
+<h2 id="⚪sql注入常用语句"><a href="#⚪sql注入常用语句" class="headerlink" title="⚪sql注入常用语句"></a>⚪sql注入常用语句</h2><p>▲ 判断是否存在注入点</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">; <span class="keyword">and</span> <span class="number">1</span>=<span class="number">1</span> <span class="keyword">and</span> <span class="number">1</span>=<span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p>▲ 猜表</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">and</span> <span class="number">0</span>&lt;&gt;(select count(*) from *) </span><br><span class="line"><span class="keyword">and</span> <span class="number">0</span>&lt;&gt;(select count(*) from admin) ---判断是否存在admin这张表</span><br></pre></td></tr></table></figure>
+<p>▲ 猜帐号数目（如果遇到0&lt; 返回正确页面 1&lt;返回错误页面说明帐号数目就是1个 ）</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">and</span> <span class="number">0</span>&lt;(select count(*) from admin) </span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>&lt;(select count(*) from admin)</span><br></pre></td></tr></table></figure>
+<p>▲ 猜解字段名称 （在len( ) 括号里面加上我们想到的字段名称. ）</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(*)&gt;<span class="number">0</span>)-- </span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(用户字段名称name)&gt;<span class="number">0</span>) </span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(_blank&gt;密码字段名称password)&gt;<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<p>▲ 猜解各个字段的长度 （猜解长度就是把&gt;0变换 直到返回正确页面为止 ）</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(*)&gt;<span class="number">0</span>) </span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(name)&gt;<span class="number">6</span>) 错误 </span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(name)&gt;<span class="number">5</span>) 正确 长度是<span class="number">6</span> </span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(name)=<span class="number">6</span>) 正确</span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(password)&gt;<span class="number">11</span>) 正确 </span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(password)&gt;<span class="number">12</span>) 错误 长度是<span class="number">12</span> </span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(password)=<span class="number">12</span>) 正确</span><br></pre></td></tr></table></figure>
 
-<!-- search自定义页面 -->
-<script type="text/javascript">
 
-	var htmlEntityMap = {
-		'&': '&amp;',
-		'<': '&lt;',
-		'>': '&gt;',
-		'"': '&quot;',
-		'\'': '&#39;',
-		'/': '&#x2F;'
-	};
 
-	// 参照hexo过滤html的方法(事实上感觉静态也没什么可以过滤的)
-	function escapeKey(str) {
-		if (typeof str !== 'string') throw new TypeError('str must be a string!');
+    </div>
+</article>
 
-		// http://stackoverflow.com/a/12034334
-		return str.replace(/[&<>"'\/]/g, function(a) {
-			return htmlEntityMap[a];
-		});
-	}
 
-	var query = decodeURIComponent(window.location.search).substring(1).split('&')
-    // 获取搜索关键词
-    var s = escapeKey(query[0].split('=')[1])
-    // 获取当前页数
-    var p = query.length > 1 ? query[1].split('=')[1] : 1
-    // 获取每页的页码数
-    var pageSize = '10'
-    var useLeancloud = ''
-    var useComment = ('true' === 'true')
-    $.getJSON('/content.json', function (json) {
-      $('#search-breadcrumb').append(`搜索'${s}'的结果`)
-      var result = getArticles(s, 'posts', json).concat(getArticles(s, 'pages', json))
-      if (result.length === 0 || result.length <= (p - 1) * pageSize) {
-      	// TODO 显示404页面
-      } else {
-        displaySearchResult(result.slice((p - 1) * pageSize, p * pageSize))
-        displayPagination(result)
-      }
-    })
-
-    function getArticles(val, type, json) {
-      return json[type].filter((e) => {
-        return e.title.indexOf(val) !== -1 || e.text.indexOf(val) !== -1
-      })
+<div id="comments-template"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script>
+	if(!window.commentConfig) {
+      window.commentConfig = {}
+      window.commentConfig.title = 'sql注入基础回头'
     }
-
-    function displaySearchResult(result) {
-      var resultList = $('#article-list')
-      result.forEach(function (article) {
-      	var [month, day] = article.date.split('-')
-        ''
-        ''
-        var defaultPreview = '/imgs/preview/preview1.jpg'
-        var preview = article.preview ? article.preview : defaultPreview
-        var path = '/' + article.path
-        resultList.append(`<div class="article well clearfix article-body article-excerpt" data-aos="flip-up">
-                                <div class="data-article hidden-xs">
-                                    <span class="month">${month}月</span>
-                                    <span class="day">${day}</span>
-                                </div>
-                                <section class="hidden-xs">
-                                    <div class="title-article">
-                                        <h1>
-                                            <a href="${path}">
-                                                <span>${article.title}</span>
-                                            </a>
-                                        </h1>
-                                    </div>
-                                    <div class="tag-article">
-                                    ${ article.tags.length > 0 ? `<span class="label label-gal"><i class="fa fa-tags"></i>${
-                                    	article.tags.map(function (tag) {
-						                 return `<a href=${ tag.permalink }>${ tag.name }</a>`
-                                    	}).join(', ') }</span>` : '' }
-                                    ${ useLeancloud ? '<span class="label label-gal"><i class="fa fa-eye"></i></span>' : ''}
-                                    </div>
-                                    <div class="alert alert-gal article-body content-article">
-                                         <div class="item">
-                                            <a href="${path}">
-                                                <div class="img">
-                                                    <img src="${preview}" alt="${article.title}">
-                                                </div>
-                                                <div class="info">
-                                                    <p>${article.excerpt}</p>
-                                                </div>
-                                            </a>
-                                         </div>
-					                </div>
-					            </section>
-                           </div>`)
-      })
-      if (useLeancloud) {
-        var Counter = AV.Object.extend('Counter')
-        showPostsTime(Counter)
-      }
-      if (useComment) {
-      	showCommentCount()
-      }
-    }
-
-    function displayPagination(result) {
-      var pgContainer = $('#gal-pagination')
-      var pg = $(pgContainer.find('.pagination-gal')[0])
-      if(result.length > 0) {
-        pgContainer.css('display', 'block')
-      }
-      var num = Math.ceil(result.length / pageSize)
-      var root = '/search'
-      var link = root + `/index.html?s=${s}`
-      if(p > 1) {
-      	pg.append(`<li class="prev"><a href="${link}&page=${p-1}">«</a></li>`)
-      }
-      if(p > 7) {
-      	pg.append(`<li><a href="${link}">1</a></li>
-                   <li><span>...</span></li>`)
-        for(var i = p - 3; i < p; i++) {
-          pg.append(`<li><a href="${link}&page=${i}">${i}</a></li>`)
-        }
-      } else {
-      	for(var j = 1; j < p; j++) {
-          pg.append(`<li><a href="${link}${j === 1 ? '' : `&page=${j}`}">${j}</a></li>`)
-        }
-      }
-      pg.append(`<li class="current"><span>${p}</span></li>`)
-      if(p + 7 < num) {
-      	for(var i = p + 1; i <= p + 3; i++) {
-          pg.append(`<li><a href="${link}&page=${i}">${i}</a></li>`)
-        }
-        pg.append(`<li><span>...</span></li>`)
-      } else {
-      	for(var j = p + 1; j <= num; j++) {
-          pg.append(`<li><a href="${link}&page=${j}">${j}</a></li>`)
-        }
-      }
-      if(p < num) {
-      	pg.append(`<li class="next"><a href="${link}&page=${p+1}">»</a></li>`)
-      }
-    }
-
-    function showPostsTime(Counter) {
-      var entries = []
-      var excerpts = $('.article-excerpt')
-      excerpts.each(function () {
-        entries.push($(this).find('.title-article').first().find('a').attr('href').trim())
-      })
-      var query = new AV.Query(Counter)
-      query.containedIn('url', entries)
-      query.find().then(function (result) {
-        excerpts.each(function () {
-          var href = $(this).find('.title-article').first().find('a').attr('href').trim()
-          var r = result.filter(function (e) {
-            return e.get('url') === href
-          })
-          if(r.length > 0) {
-            $(this).find('i.fa-eye').each(function () {
-              $(this).after(' ' + r[0].get('time') + ' ℃')
-            })
-          } else {
-            $(this).find('i.fa-eye').each(function () {
-              $(this).after(' 0 ℃')
-            })
-          }
-        })
-      }).then(function (error) {
-        console.log('Error:' + error.code + ' ' + error.message)
-      })
-    }
-
-    function showCommentCount() {
-      const excerpts = $('.article-excerpt')
-      const owner = window.commentConfig.owner
-      const repo = window.commentConfig.repo
-      $.ajax({
-        url: "https://api.github.com/repos/" + owner + '/' + repo + '/issues',
-        data: {
-          creator: owner
-        }
-      }).done(function(issues) {
-        excerpts.each(function () {
-          const that = $(this)
-          that.find('h1 > a > span').each(function () {
-            const title = $(this).text()
-            const tags = that.find('div.tag-article')
-            const issue = issues.filter(function (issue) {
-              return issue.title === title
-            })
-            const comments = issue.length > 0 ? issue[0].comments : 0
-            tags.each(function () {
-              $(this).append('<span class="label label-gal"><i class="fa fa-comments"></i><a> ' + comments + '</a></span>')
-            })
-          })
-        })
-      }).fail(function (error) {
-        console.log(error)
-      });
-    }
-
 </script>
-<div class="breadcrumb breadcrumb-gal" id="search-breadcrumb">
-    <i class="fa fa-home"></i>
-</div>
-<div id="article-list"></div>
-<div id="gal-pagination" class="clearfix" style="display: none;">
-    <ul class="pagination pagination-gal pull-right"></ul>
-</div>
-<!-- 404页面 -->
 
                 </div>
                 <aside class="col-md-4 gal-left" id="sidebar">
@@ -489,17 +351,17 @@
 
                 
                 <li>
-                    <a href="/search/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                    <a href="/2020/07/12/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%E5%9B%9E%E5%A4%B4/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
                 </li>
                 
                 
                 <li>
-                    <a href="/search/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                    <a href="/2020/07/12/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%E5%9B%9E%E5%A4%B4/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
                 </li>
                 
                 
                 <li>
-                    <a href="/search/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                    <a href="/2020/07/12/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%E5%9B%9E%E5%A4%B4/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
                 </li>
                 
             </ul>
@@ -621,7 +483,7 @@
 <script src="https://myau.moe/js/comment/gitment.browser.js"></script>
 <script>
     if(window.commentConfig) {
-      window.commentConfig.id = 'Fri Feb 07 2020 11:18:12 GMT+0800'
+      window.commentConfig.id = 'Sun Jul 12 2020 10:34:58 GMT+0800'
       window.commentConfig.owner = 'Edmund0A'
       window.commentConfig.repo = ''
       window.commentConfig.client_id = ''
@@ -629,7 +491,7 @@
       window.commentConfig.redirect_uri = ''
     } else {
       window.commentConfig = {
-      	id: 'Fri Feb 07 2020 11:18:12 GMT+0800',
+      	id: 'Sun Jul 12 2020 10:34:58 GMT+0800',
         owner: 'Edmund0A',
         repo: '',
         client_id: '',
