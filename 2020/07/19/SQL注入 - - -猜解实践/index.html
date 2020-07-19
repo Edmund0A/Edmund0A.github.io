@@ -10,7 +10,7 @@
     
     
     
-    <title>archive_a | Hexo</title>
+    <title>SQL注入 - - -猜解实践 | Hexo</title>
     <link href="https://Edmund0A.github.io" rel="prefetch" />
 
     
@@ -107,7 +107,7 @@
                 
                 
                 
-                <li class="current">
+                <li class="">
                     <a href="/archives">
                         <i class="fa fa-archive"></i>归档
                     </a>
@@ -150,19 +150,27 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 gal-right" id="mainstay">
-                    <article class="article well article-body" id="article-archive">
+                    
+<article class="article well article-body" id="article">
     <div class="breadcrumb">
         <i class="fa fa-home"></i>
         <a href="https://Edmund0A.github.io">Hexo</a>
         >
-        <span>归档</span>
+        <span>SQL注入 - - -猜解实践</span>
     </div>
     <!-- 大型设备详细文章 -->
     <div class="hidden-xs">
         <div class="title-article">
             <h1>
-                <a href="/archives">归档</a>
+                <a href="/2020/07/19/SQL%E6%B3%A8%E5%85%A5%20-%20-%20-%E7%8C%9C%E8%A7%A3%E5%AE%9E%E8%B7%B5/">SQL注入 - - -猜解实践</a>
             </h1>
+        </div>
+        <div class="tag-article">
+            
+            <span class="label label-gal">
+                <i class="fa fa-calendar"></i> 2020-07-19
+            </span>
+            
         </div>
     </div>
     <!-- 小型设备详细文章 -->
@@ -170,43 +178,40 @@
         <center>
             <div class="title-article">
                 <h4>
-                    <a href="/archives">归档</a>
+                    <a href="/2020/07/19/SQL%E6%B3%A8%E5%85%A5%20-%20-%20-%E7%8C%9C%E8%A7%A3%E5%AE%9E%E8%B7%B5/">SQL注入 - - -猜解实践</a>
                 </h4>
             </div>
+            <p>
+                <i class="fa fa-calendar"></i> 2020-07-19
+            </p>
+            <p>
+                
+                
+            </p>
         </center>
     </div>
-    <div class="content-article" style="margin-top: 30px;">
-        
-        
-            <h1 style="font-size: 24px; margin-top: 40px;">2020年</h1>
-            
-        <div class="alert alert-info" style="font-size: 14px; line-height: 2; font-weight: bold;">
-            
-             
-             
-                        <a href="/2020/07/19/SQL%E6%B3%A8%E5%85%A5%20-%20-%20-%E7%8C%9C%E8%A7%A3%E5%AE%9E%E8%B7%B5/">SQL注入 - - -猜解实践</a>
-                        <br>
-            
-             
-                        <a href="/2020/07/12/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%E5%9B%9E%E5%A4%B4/">sql注入基础回头</a>
-                        <br>
-            
-             
-                        <a href="/2020/03/29/SQL%E9%9D%B6%E5%9C%BA%E7%9A%84%E5%BB%BA%E7%AB%8B/">SQL靶场的建立</a>
-                        <br>
-            
-             
-                        <a href="/2020/02/15/%E6%9C%AC%E4%BA%BA%E7%9A%84%E9%A6%96%E6%AC%A1%E6%90%AD%E5%BB%BAhexo+github%E5%8D%9A%E5%AE%A2/">本人的首次搭建hexo+github博客</a>
-                        <br>
-            
-             
-                        <a href="/2020/02/07/hello-world/">Hello World</a>
-                        <br>
-            
-                    </div>
-        
+    <div class="content-article">
+        <p>🔺⚪▲</p>
+<h1 id="🔺-SQL注入—猜解"><a href="#🔺-SQL注入—猜解" class="headerlink" title="🔺 SQL注入—猜解"></a>🔺 SQL注入—猜解</h1><p>这里使用的是DVWA平台进行注入，具体DVWA<a href="https://blog.csdn.net/qq_35544379/article/details/77502066" target="_blank" rel="noopener">安装及配置方法</a>、<a href="https://blog.csdn.net/weixin_39762423/article/details/83035209" target="_blank" rel="noopener">配置中常见问题</a>网址已给出，这里不再赘述。<br>▲首先进入DVWA主页并登录，选择“SQL injection”：<br><img src="https://img-blog.csdnimg.cn/20200719121356679.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0VkbXVuZDBB,size_16,color_FFFFFF,t_70#pic_center" alt="出现此页面证明DVWA登陆成功"><br>▲使用控制参数的方法，让网址返回我们需要的信息。首先输入“1”并查看回显：<br><img src="https://img-blog.csdnimg.cn/20200719121810686.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0VkbXVuZDBB,size_16,color_FFFFFF,t_70#pic_center" alt="回显如图"><br>（URL中ID=1，说明php页面通过get方法传递参数）<br>▲此时点击右下角”View Source”查看源代码：<br><img src="https://img-blog.csdnimg.cn/20200719122111222.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0VkbXVuZDBB,size_16,color_FFFFFF,t_70#pic_center" alt="查看源码">其中可见SQL查询代码：<br><img src="https://img-blog.csdnimg.cn/20200719122322321.png#pic_center" alt="SQL查询代码"><br>由此可见实际执行的sql语句是</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT first_name, last_name FROM users WHERE user_id = <span class="string">'1'</span>;</span><br></pre></td></tr></table></figure>
+<p>▲（此方法摘自大佬的博客）如果使用其他方法，在输入框输入 <strong>1’ order by 1#</strong>，实际sql语句便会更改为：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT first_name, last_name FROM users WHERE user_id = <span class="string">'1'</span> order by <span class="number">1</span><span class="comment">#`;</span></span><br></pre></td></tr></table></figure>
+<p>语句的意思是查询users表中user_id为1的数据并按第一字段排行。</p>
+<p>▲输入 <strong>1’ order by 1#</strong> 和 <strong>1’ order by 2#</strong> 时都返回正常：<br><img src="https://img-blog.csdnimg.cn/2020071914070141.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0VkbXVuZDBB,size_16,color_FFFFFF,t_70#pic_center" alt="返回"><br>▲输入 <strong>1’ order by 3#</strong> 时，返回错误：<br><img src="https://img-blog.csdnimg.cn/20200719140937903.png#pic_center" alt="返回错误">由此可得users表中只有两个字段，数据为两列。<br>继续使用联合查询获取信息。<br>▲输入 <strong>1’ union select database(),user()#</strong> 开始查询，得到返回：<br><img src="https://img-blog.csdnimg.cn/20200719141510461.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0VkbXVuZDBB,size_16,color_FFFFFF,t_70#pic_center" alt="返回值"><br>从中我们可以得到一些信息—网站使用数据库为dvwa，执行查询的用户名额为root@localhost。<br>▲输入  <strong>1’ union select version(),@@version_compile_os#</strong>  进行查询，再次得到返回信息：<br><img src="https://img-blog.csdnimg.cn/20200719141901334.png#pic_center" alt="返回信息"><br>则可以知道当前数据库版本为 : 5.6.31-0ubuntu0.15.10.1.，当前操作系统为 : debian-linux-gnu。</p>
+
     </div>
 </article>
+
+
+<div id="comments-template"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script>
+	if(!window.commentConfig) {
+      window.commentConfig = {}
+      window.commentConfig.title = 'SQL注入 - - -猜解实践'
+    }
+</script>
+
                 </div>
                 <aside class="col-md-4 gal-left" id="sidebar">
     <!-- 此为sidebar的搜索框, 非搜索结果页面 -->
@@ -348,17 +353,17 @@
 
                 
                 <li>
-                    <a href="/archives/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                    <a href="/2020/07/19/SQL%E6%B3%A8%E5%85%A5%20-%20-%20-%E7%8C%9C%E8%A7%A3%E5%AE%9E%E8%B7%B5/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
                 </li>
                 
                 
                 <li>
-                    <a href="/archives/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                    <a href="/2020/07/19/SQL%E6%B3%A8%E5%85%A5%20-%20-%20-%E7%8C%9C%E8%A7%A3%E5%AE%9E%E8%B7%B5/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
                 </li>
                 
                 
                 <li>
-                    <a href="/archives/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                    <a href="/2020/07/19/SQL%E6%B3%A8%E5%85%A5%20-%20-%20-%E7%8C%9C%E8%A7%A3%E5%AE%9E%E8%B7%B5/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
                 </li>
                 
             </ul>
@@ -475,6 +480,30 @@
 <script src="/js/blog.js"></script>
 
 
+
+
+<script src="https://myau.moe/js/comment/gitment.browser.js"></script>
+<script>
+    if(window.commentConfig) {
+      window.commentConfig.id = 'Sun Jul 19 2020 14:20:54 GMT+0800'
+      window.commentConfig.owner = 'Edmund0A'
+      window.commentConfig.repo = ''
+      window.commentConfig.client_id = ''
+      window.commentConfig.client_secret = ''
+      window.commentConfig.redirect_uri = ''
+    } else {
+      window.commentConfig = {
+      	id: 'Sun Jul 19 2020 14:20:54 GMT+0800',
+        owner: 'Edmund0A',
+        repo: '',
+        client_id: '',
+        client_secret: '',
+        redirect_uri: ''
+      }
+    }
+</script>
+
+<script src="/js/comment/gitment.js"></script>
 
 
 </html>
