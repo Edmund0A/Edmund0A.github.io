@@ -10,7 +10,7 @@
     
     
     
-    <title>SQL注入绕过 | Hexo</title>
+    <title>SQL注入点的判断 | Hexo</title>
     <link href="https://Edmund0A.github.io" rel="prefetch" />
 
     
@@ -156,19 +156,19 @@
         <i class="fa fa-home"></i>
         <a href="https://Edmund0A.github.io">Hexo</a>
         >
-        <span>SQL注入绕过</span>
+        <span>SQL注入点的判断</span>
     </div>
     <!-- 大型设备详细文章 -->
     <div class="hidden-xs">
         <div class="title-article">
             <h1>
-                <a href="/2020/07/26/SQL%E6%B3%A8%E5%85%A5%E7%BB%95%E8%BF%87/">SQL注入绕过</a>
+                <a href="/2020/08/01/SQL%E6%B3%A8%E5%85%A5%E7%82%B9%E7%9A%84%E5%88%A4%E6%96%AD/">SQL注入点的判断</a>
             </h1>
         </div>
         <div class="tag-article">
             
             <span class="label label-gal">
-                <i class="fa fa-calendar"></i> 2020-07-26
+                <i class="fa fa-calendar"></i> 2020-08-01
             </span>
             
         </div>
@@ -178,11 +178,11 @@
         <center>
             <div class="title-article">
                 <h4>
-                    <a href="/2020/07/26/SQL%E6%B3%A8%E5%85%A5%E7%BB%95%E8%BF%87/">SQL注入绕过</a>
+                    <a href="/2020/08/01/SQL%E6%B3%A8%E5%85%A5%E7%82%B9%E7%9A%84%E5%88%A4%E6%96%AD/">SQL注入点的判断</a>
                 </h4>
             </div>
             <p>
-                <i class="fa fa-calendar"></i> 2020-07-26
+                <i class="fa fa-calendar"></i> 2020-08-01
             </p>
             <p>
                 
@@ -192,27 +192,23 @@
     </div>
     <div class="content-article">
         <p>🔺⚪▲</p>
-<h1 id="🔺-关键字的绕过"><a href="#🔺-关键字的绕过" class="headerlink" title="🔺 关键字的绕过"></a>🔺 关键字的绕过</h1><h2 id="⚪-过滤"><a href="#⚪-过滤" class="headerlink" title="⚪ 过滤"></a>⚪ 过滤</h2><p>如对and进行过滤，可以尝试：<br>▲ 对于and,or的绕过可以尝试一下&amp;&amp;,||,异或特殊符号注入<br>▲ 使用注释符绕过，比如: <code>/*!and*/ uni/**/on se/**/lect</code><br>▲ 大小写绕过: <code>ANd UniOn SeleCt</code><br>▲ 双关键字绕过: <code>ununionion seselectlect</code><br>▲ 关键字替换（在关键字中间可插入将会被WAF过滤的字符） – 例如SELECT可插入变成a&lt;nd，一旦插入字符被过滤，&lt;它将作为and传递。<br>空格代替：<code>+ %20 %09 %0a %0b %0c %0d %a0 %00 /**/ /!/</code></p>
-<h2 id="⚪-大小写混合"><a href="#⚪-大小写混合" class="headerlink" title="⚪ 大小写混合"></a>⚪ 大小写混合</h2><p>如果正则表达式只针对小写或大写的关键字进行匹配处理，根据数据库以不区分大小写的方式处理SQL关键字的特性，改变大小写。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="comment">//mp.csdn.net/index.php?id=-15 uNIoN sELecT 1,2,3,4</span></span><br></pre></td></tr></table></figure>
-<h2 id="⚪-替换关键字"><a href="#⚪-替换关键字" class="headerlink" title="⚪ 替换关键字"></a>⚪ 替换关键字</h2><p>这种情况下大小写转化无法进行绕过而且正则表达式会替换或删除select、union这些关键字，可以先摸清楚后台的过滤机制，针对正则过滤进行利用，如果select、union这些关键字只匹配一次就可以利用双写关键字进行绕过。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="comment">//mp.csdn.net/index.php?id=-15  UNIunionON SELselectECT 1,2,3,4</span></span><br></pre></td></tr></table></figure>
-<h2 id="⚪-使用编码"><a href="#⚪-使用编码" class="headerlink" title="⚪ 使用编码"></a>⚪ 使用编码</h2><h3 id="▲-URL编码"><a href="#▲-URL编码" class="headerlink" title="▲ URL编码"></a>▲ URL编码</h3><p>如在Chrome中输入一个链接非保留字的字符浏览器会对其URL编码如<code>空格变为%20、单引号%27、左括号%28、右括号%29</code>。<br>普通的URL编码可能无法实现绕过，不过存在某种情况比如URL编码只进行了一次解码过滤，那么这时候就可以用两次URL编码进行绕过。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">未编码前：?id=<span class="number">-1</span><span class="string">' UNION SELECT 1,2,3,4 --+#</span></span><br></pre></td></tr></table></figure>
+<h1 id="🔺-SQL注入点的判断"><a href="#🔺-SQL注入点的判断" class="headerlink" title="🔺 SQL注入点的判断"></a>🔺 SQL注入点的判断</h1><h2 id="⚪-通常情况对于SQL注入点的基本判断"><a href="#⚪-通常情况对于SQL注入点的基本判断" class="headerlink" title="⚪ 通常情况对于SQL注入点的基本判断"></a>⚪ 通常情况对于SQL注入点的基本判断</h2><p>通常情况下，可能存在 Sql 注入漏洞的 Url 是类似这种形式 ：<code>http://xxx.xxx.xxx/abcd.php?id=XX</code></p>
+<p>对 Sql 注入的判断，主要有两个方面：<strong>1.该带参数的 Url 是否存在 Sql 注入？<br>2.如果存在 Sql 注入，是属于哪种 Sql 注入？</strong><br>对于可能存在 Sql 注入攻击的 ASP/PHP/JSP 动态网页中，一个动态网页中可能只有一个参数，也可能有多个参数。可能是整型参数也可能是字符串型参数，如果带有参数的 动态网页且此网页访问了数据库，就有可能存在 Sql 注入。若没有进行过字符过滤，则发生SQL注入的可能性就很大。</p>
+<h2 id="⚪-判断是否存在注入漏洞"><a href="#⚪-判断是否存在注入漏洞" class="headerlink" title="⚪ 判断是否存在注入漏洞"></a>⚪ 判断是否存在注入漏洞</h2><h3 id="▲-单引号判断"><a href="#▲-单引号判断" class="headerlink" title="▲ 单引号判断"></a>▲ 单引号判断</h3><p>在参数后面加上单引号，如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//xxx/abc.php?id=1'</span></span><br></pre></td></tr></table></figure>
+<p>此时如果页面返回有错误，则证明是有存在注入漏洞。因为无论字符型还是整型都会因为单引号个数不匹配而报错。也存在有未报错的情况，这种情况不代表不存在sql注入漏洞，有可能是页面对单引号做了过滤，这种情况下需要用其他方法语句注入。</p>
+<h2 id="⚪-判断注入漏洞类型"><a href="#⚪-判断注入漏洞类型" class="headerlink" title="⚪ 判断注入漏洞类型"></a>⚪ 判断注入漏洞类型</h2><p>通常的sql注入漏洞分为两种类型，即<strong>数字型</strong>和<strong>字符型</strong> 。<br>所有的类型都是根据数据库本身表的类型所产生的，在创建表的时候其后总有个数据类型的限制，而不同的数据库又有不同的数据类型，但无论怎么分常用的查询数据类型总是以数字与字符来区分的，因此就会产生注入点为何种类型。</p>
+<h3 id="▲-数字型的判断"><a href="#▲-数字型的判断" class="headerlink" title="▲ 数字型的判断"></a>▲ 数字型的判断</h3><p>当输入的参 x 为整型时，通常 abc.php 中 Sql 语句类型大致如下：</p>
+<blockquote>
+<p>select * from &lt;表名&gt; where id = x</p>
+</blockquote>
+<p>这种类型可以使用经典的 <code>and 1=1</code> 和 <code>and 1=2</code> 来判断：<br><strong>※</strong> Url 地址中输入 <code>http://xxx/abc.php?id= x and 1=1</code> 页面依旧运行正常，继续进行下一步；<br><strong>※</strong> Url 地址中继续输入 <code>http://xxx/abc.php?id= x and 1=2</code> 页面运行错误，则说明此 Sql 注入为数字型注入。<br><strong>原因如下：</strong><br>当输入 and 1=1时，后台执行 Sql 语句：<code>select * from &lt;表名&gt; where id = x and 1=1</code><br>无语法错误且逻辑判断正确，返回正常；<br>当输入 and 1=2时，后台执行 Sql 语句：<code>select * from &lt;表名&gt; where id = x and 1=2</code><br>无语法错误，但是逻辑判断为假，则返回错误。<br>假设如果这是字符型注入的话，我们输入以上语句之后应该出现如下情况：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select * from &lt;表名&gt; where id = <span class="string">'x and 1=1'</span></span><br><span class="line">select * from &lt;表名&gt; where id = <span class="string">'x and 1=2'</span></span><br></pre></td></tr></table></figure>
+<p>查询语句将 and 语句全部转换为了字符串，并没有进行 and 的逻辑判断，不会出现以上结果，故假设不成立。</p>
+<h3 id="▲-字符型判断"><a href="#▲-字符型判断" class="headerlink" title="▲ 字符型判断"></a>▲ 字符型判断</h3><p>当输入的参 x 为字符型时，通常 abc.php 中 SQL 语句类型大致如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from &lt;表名&gt; where id = <span class="string">'x'</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">一次编码后：?id=<span class="number">-1</span>%<span class="number">27</span>%<span class="number">20</span>UNION%<span class="number">20</span>SELECT%<span class="number">201</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>%<span class="number">20</span>--+<span class="comment">#</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">二次编码后：?id=<span class="number">-1</span>%<span class="number">2527</span>%<span class="number">2520</span>UNION%<span class="number">2520</span>SELECT%<span class="number">25201</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>%<span class="number">2520</span>--+<span class="comment">#</span></span><br></pre></td></tr></table></figure>
-<h3 id="▲-十六进制编码"><a href="#▲-十六进制编码" class="headerlink" title="▲ 十六进制编码"></a>▲ 十六进制编码</h3><p>对后台针对单引号或者关键字进行处理，就可以使用16进制，把 <strong>‘glbimreb21’</strong> 变为 <strong>0x676c62696d7265623231</strong>,就可不需要单引号包裹着变量进行简单的绕过了，<em>在用 16进制进行绕过时，16进制前面要加0x</em>。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">转换前：?id=<span class="number">-55</span><span class="string">' union%20select%201,group_concat(table_name),3 from information_schema.tables where table_schema='</span>glbimreb21<span class="string">' --+</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">转换后：?id=<span class="number">-55</span><span class="string">' union%20select%201,group_concat(table_name),3 from information_schema.tables where table_schema=0x676c62696d7265623231--+</span></span><br></pre></td></tr></table></figure>
-<h3 id="▲-Unicode编码"><a href="#▲-Unicode编码" class="headerlink" title="▲ Unicode编码"></a>▲ Unicode编码</h3><p>Unicode是一种行业标准，它可以用不同的字符编码表示，Unicode有标准编码和非标准编码。常用的几个符号的一些Unicode编码<br>单引号：<code>%u0027、%u02b9、%u02bc、%u02c8、%u2032、%uff07、%c0%27、%c0%a7、%e0%80%a7</code><br>空格：<code>%u0020、%uff00、%c0%20、%c0%a0、%e0%80%a0</code><br>左括号：<code>%u0028、%uff08、%c0%28、%c0%a8、%e0%80%a8</code><br>右括号：<code>%u0029、%uff09、%c0%29、%c0%a9、%e0%80%a9</code><br>举例：</p>
-<ol>
-<li>**?id=10%D6’%20AND%201=2%23</li>
-<li>SELECT ‘Ä’=‘A’; #1**</li>
-</ol>
-<p>两个示例中，前者利用双字节绕过，对单引号转义操作变成’，就变成了%D6%5C’，%D6%5C构成了一个款字节即Unicode字节，单引号可以正常使用。<br>第二个示例使用的是两种不同编码的字符的比较，它们比较的结果可能是True或者False，关键在Unicode编码种类繁多，基于黑名单的过滤器无法处理所有情况，从而实现绕过。</p>
+<p>这种类型我们同样可以使用 <code>and &#39;1&#39;=&#39;1</code> 和 <code>and &#39;1&#39;=&#39;2</code>来判断：<br>Url 地址中输入 <code>http://xxx/abc.php?id= x&#39; and &#39;1&#39;=&#39;1</code> 页面运行正常，继续进行下一步。<br>Url 地址中继续输入 <code>http://xxx/abc.php?id= x&#39; and &#39;1&#39;=&#39;2</code> 页面运行错误，则说明此 Sql 注入为字符型注入。<br><strong>原因如下</strong><br>当输入 and ‘1’=’1时，后台执行 Sql 语句：<code>select * from &lt;表名&gt; where id = &#39;x&#39; and &#39;1&#39;=&#39;1&#39;</code><br>该语句语法正确，逻辑判断正确，返回正确。<br>当输入 and ‘1’=’2时，后台执行 Sql 语句：<code>select * from &lt;表名&gt; where id = &#39;x&#39; and &#39;1&#39;=&#39;2&#39;</code><br>该语句语法正确，但逻辑判断错误，则返回正确。</p>
 
     </div>
 </article>
@@ -223,7 +219,7 @@
 <script>
 	if(!window.commentConfig) {
       window.commentConfig = {}
-      window.commentConfig.title = 'SQL注入绕过'
+      window.commentConfig.title = 'SQL注入点的判断'
     }
 </script>
 
@@ -392,17 +388,17 @@
 
                 
                 <li>
-                    <a href="/2020/07/26/SQL%E6%B3%A8%E5%85%A5%E7%BB%95%E8%BF%87/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                    <a href="/2020/08/01/SQL%E6%B3%A8%E5%85%A5%E7%82%B9%E7%9A%84%E5%88%A4%E6%96%AD/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
                 </li>
                 
                 
                 <li>
-                    <a href="/2020/07/26/SQL%E6%B3%A8%E5%85%A5%E7%BB%95%E8%BF%87/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                    <a href="/2020/08/01/SQL%E6%B3%A8%E5%85%A5%E7%82%B9%E7%9A%84%E5%88%A4%E6%96%AD/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
                 </li>
                 
                 
                 <li>
-                    <a href="/2020/07/26/SQL%E6%B3%A8%E5%85%A5%E7%BB%95%E8%BF%87/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                    <a href="/2020/08/01/SQL%E6%B3%A8%E5%85%A5%E7%82%B9%E7%9A%84%E5%88%A4%E6%96%AD/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
                 </li>
                 
             </ul>
@@ -524,7 +520,7 @@
 <script src="https://myau.moe/js/comment/gitment.browser.js"></script>
 <script>
     if(window.commentConfig) {
-      window.commentConfig.id = 'Sun Jul 26 2020 15:20:51 GMT+0800'
+      window.commentConfig.id = 'Sat Aug 01 2020 19:24:53 GMT+0800'
       window.commentConfig.owner = 'Edmund0A'
       window.commentConfig.repo = ''
       window.commentConfig.client_id = ''
@@ -532,7 +528,7 @@
       window.commentConfig.redirect_uri = ''
     } else {
       window.commentConfig = {
-      	id: 'Sun Jul 26 2020 15:20:51 GMT+0800',
+      	id: 'Sat Aug 01 2020 19:24:53 GMT+0800',
         owner: 'Edmund0A',
         repo: '',
         client_id: '',
