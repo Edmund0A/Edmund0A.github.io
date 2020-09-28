@@ -10,7 +10,7 @@
     
     
     
-    <title>SQL注入点的判断 | Hexo</title>
+    <title>攻防世界题目回顾（新手题目  下） | Hexo</title>
     <link href="https://Edmund0A.github.io" rel="prefetch" />
 
     
@@ -156,19 +156,19 @@
         <i class="fa fa-home"></i>
         <a href="https://Edmund0A.github.io">Hexo</a>
         >
-        <span>SQL注入点的判断</span>
+        <span>攻防世界题目回顾（新手题目  下）</span>
     </div>
     <!-- 大型设备详细文章 -->
     <div class="hidden-xs">
         <div class="title-article">
             <h1>
-                <a href="/2020/08/01/SQL%E6%B3%A8%E5%85%A5%E7%82%B9%E7%9A%84%E5%88%A4%E6%96%AD/">SQL注入点的判断</a>
+                <a href="/2020/09/28/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E9%A2%98%E7%9B%AE%E5%9B%9E%E9%A1%BE%EF%BC%88%E6%96%B0%E6%89%8B%E9%A2%98%E7%9B%AE%20%20%E4%B8%8B%EF%BC%89/">攻防世界题目回顾（新手题目  下）</a>
             </h1>
         </div>
         <div class="tag-article">
             
             <span class="label label-gal">
-                <i class="fa fa-calendar"></i> 2020-08-01
+                <i class="fa fa-calendar"></i> 2020-09-28
             </span>
             
         </div>
@@ -178,11 +178,11 @@
         <center>
             <div class="title-article">
                 <h4>
-                    <a href="/2020/08/01/SQL%E6%B3%A8%E5%85%A5%E7%82%B9%E7%9A%84%E5%88%A4%E6%96%AD/">SQL注入点的判断</a>
+                    <a href="/2020/09/28/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E9%A2%98%E7%9B%AE%E5%9B%9E%E9%A1%BE%EF%BC%88%E6%96%B0%E6%89%8B%E9%A2%98%E7%9B%AE%20%20%E4%B8%8B%EF%BC%89/">攻防世界题目回顾（新手题目  下）</a>
                 </h4>
             </div>
             <p>
-                <i class="fa fa-calendar"></i> 2020-08-01
+                <i class="fa fa-calendar"></i> 2020-09-28
             </p>
             <p>
                 
@@ -191,24 +191,30 @@
         </center>
     </div>
     <div class="content-article">
-        <p>🔺⚪▲</p>
-<h1 id="🔺-SQL注入点的判断"><a href="#🔺-SQL注入点的判断" class="headerlink" title="🔺 SQL注入点的判断"></a>🔺 SQL注入点的判断</h1><h2 id="⚪-通常情况对于SQL注入点的基本判断"><a href="#⚪-通常情况对于SQL注入点的基本判断" class="headerlink" title="⚪ 通常情况对于SQL注入点的基本判断"></a>⚪ 通常情况对于SQL注入点的基本判断</h2><p>通常情况下，可能存在 Sql 注入漏洞的 Url 是类似这种形式 ：<code>http://xxx.xxx.xxx/abcd.php?id=XX</code></p>
-<p>对 Sql 注入的判断，主要有两个方面：<strong>1.该带参数的 Url 是否存在 Sql 注入？<br>2.如果存在 Sql 注入，是属于哪种 Sql 注入？</strong><br>对于可能存在 Sql 注入攻击的 ASP/PHP/JSP 动态网页中，一个动态网页中可能只有一个参数，也可能有多个参数。可能是整型参数也可能是字符串型参数，如果带有参数的 动态网页且此网页访问了数据库，就有可能存在 Sql 注入。若没有进行过字符过滤，则发生SQL注入的可能性就很大。</p>
-<h2 id="⚪-判断是否存在注入漏洞"><a href="#⚪-判断是否存在注入漏洞" class="headerlink" title="⚪ 判断是否存在注入漏洞"></a>⚪ 判断是否存在注入漏洞</h2><h3 id="▲-单引号判断"><a href="#▲-单引号判断" class="headerlink" title="▲ 单引号判断"></a>▲ 单引号判断</h3><p>在参数后面加上单引号，如：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//xxx/abc.php?id=1'</span></span><br></pre></td></tr></table></figure>
-<p>此时如果页面返回有错误，则证明是有存在注入漏洞。因为无论字符型还是整型都会因为单引号个数不匹配而报错。也存在有未报错的情况，这种情况不代表不存在sql注入漏洞，有可能是页面对单引号做了过滤，这种情况下需要用其他方法语句注入。</p>
-<h2 id="⚪-判断注入漏洞类型"><a href="#⚪-判断注入漏洞类型" class="headerlink" title="⚪ 判断注入漏洞类型"></a>⚪ 判断注入漏洞类型</h2><p>通常的sql注入漏洞分为两种类型，即<strong>数字型</strong>和<strong>字符型</strong> 。<br>所有的类型都是根据数据库本身表的类型所产生的，在创建表的时候其后总有个数据类型的限制，而不同的数据库又有不同的数据类型，但无论怎么分常用的查询数据类型总是以数字与字符来区分的，因此就会产生注入点为何种类型。</p>
-<h3 id="▲-数字型的判断"><a href="#▲-数字型的判断" class="headerlink" title="▲ 数字型的判断"></a>▲ 数字型的判断</h3><p>当输入的参 x 为整型时，通常 abc.php 中 Sql 语句类型大致如下：</p>
+        <h1 id="🔺-题目及解题思路"><a href="#🔺-题目及解题思路" class="headerlink" title="🔺 题目及解题思路"></a>🔺 题目及解题思路</h1><h2 id="⚪-第九题"><a href="#⚪-第九题" class="headerlink" title="⚪ 第九题"></a>⚪ 第九题</h2><p>该题考研的是对于php语言的基本认知，以及对其算法运用的初步理解。<br>首先进入题目网址，查看到题目页面。<br><img src="https://img-blog.csdnimg.cn/20200921201036504.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0VkbXVuZDBB,size_16,color_FFFFFF,t_70#pic_center" alt="1"><br>既然是php有关，那么就需要了解一下php语言的基本语法。该题目需要用到的基本语法以及个人见解整理如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">---------------------------------------------------------------------------------</span><br><span class="line">$a&#x3D;@$_GET[&#39;a&#39;];</span><br><span class="line">$b&#x3D;@$_GET[&#39;b&#39;];</span><br><span class="line">有点类似于C语言的赋值语句，经过百度查找后发现确实如此。在网页上get时只需在地址后面直接加“&#x2F;?a&#x3D;**</span><br><span class="line">&amp;b&#x3D;**”即可。</span><br><span class="line">---------------------------------------------------------------------------------</span><br><span class="line">if($a&#x3D;&#x3D;0 and $a)&#123;</span><br><span class="line">    echo $flag1;</span><br><span class="line">&#125;</span><br><span class="line">if(is_numeric($b))&#123;</span><br><span class="line">    exit();</span><br><span class="line">&#125;</span><br><span class="line">if($b&gt;1234)&#123;</span><br><span class="line">    echo $flag2;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br><span class="line">典型的if语句，和C语言的if语句非常相似。因此基本上可以看出大概什么意思，但在此处还是解释一下。</span><br><span class="line">第一个if：a&#x3D;&#x3D;0 and $a</span><br><span class="line">其中的php两个等号为宽松比较，三个等号为严格比较。举例说明：“0”&#x3D;0  在两个等号的情况下返回“true”，</span><br><span class="line">在三个等号的情况下返回“false”。</span><br><span class="line">综合来看，对于a的赋值必须保证第一位是字母，$a:a必定为真。</span><br><span class="line">echo：基本上与c语言中的“printf”同义；</span><br><span class="line">对于b的赋值必须保证不是纯数字，b要大于1234。</span><br><span class="line">当a和b同时满足条件时，会返回来flag。</span><br></pre></td></tr></table></figure>
+<p>即a和b的值中，如果a和0比较返回为true且a为真，且b是大于1234的纯数字，满足这两个数值的条件才会返回flag。<br>因此可取a=abcd ，b=1235a。<br>输入后可得到flag。<br><img src="https://img-blog.csdnimg.cn/20200922193242931.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0VkbXVuZDBB,size_16,color_FFFFFF,t_70#pic_center" alt="flag"></p>
+<h2 id="⚪-第十题"><a href="#⚪-第十题" class="headerlink" title="⚪ 第十题"></a>⚪ 第十题</h2><p>观察题目，发现该题题目提到了的关键字包含有“xff”“refer”，而这两者便是解开该题目的关键。本题进入答题页面后发现要求ip地址必须为“123.123.123.123”；<br><img src="https://img-blog.csdnimg.cn/20200922200049761.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0VkbXVuZDBB,size_16,color_FFFFFF,t_70#pic_center" alt="1"><br><img src="https://img-blog.csdnimg.cn/20200922200118584.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0VkbXVuZDBB,size_16,color_FFFFFF,t_70#pic_center" alt="2"></p>
+<p>这边要用到xff的相关知识，部分知识如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">X-Forwarded-For (XFF) 在客户端访问服务器的过程中如果需要经过HTTP代理或者负载均衡服务器，可以被用</span><br><span class="line">来获取最初发起请求的客户端的IP地址，这个消息首部成为事实上的标准。在消息流从客户端流向服务器的过程</span><br><span class="line">中被拦截的情况下，服务器端的访问日志只能记录代理服务器或者负载均衡服务器的IP地址。如果想要获得最初</span><br><span class="line">发起请求的客户端的IP地址的话，那么 X-Forwarded-For 就派上了用场。</span><br><span class="line">这个消息首部会被用来进行调试和统计，以及生成基于位置的定制化内容，按照设计的目的，它会暴露一定的隐</span><br><span class="line">私和敏感信息，比如客户端的IP地址。所以在应用此消息首部的时候，需要将用户的隐私问题考虑在内。</span><br></pre></td></tr></table></figure>
+<p>了解这些之后，我们打开burpsuite，来进行对代理的拦截。拦截到后右击选择“发送给Repeater”进入重发器，通过直接在请求头添加<strong>X-Forwarded-For:123.123.123.123</strong>的方式来转到123.123.123.123的ip，随后放包：<br><img src="https://img-blog.csdnimg.cn/20200922201822744.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0VkbXVuZDBB,size_16,color_FFFFFF,t_70#pic_center" alt="3"><br>此时可见多处一行回显<code>&lt;script&gt;</code> ：<em>必须来自 <a href="https://www.google.com" target="_blank" rel="noopener">https://www.google.com</a></em><br><strong>*意思是需要请求头包含当前请求页面的来源页面的地址<a href="https://www.google.com" target="_blank" rel="noopener">https://www.google.com</a><br>也就是修改请求头中的Referer内容为<a href="https://www.google.com" target="_blank" rel="noopener">https://www.google.com</a></strong><br>以下是相关refer的知识（转自大佬博客）：</p>
 <blockquote>
-<p>select * from &lt;表名&gt; where id = x</p>
+<p>Referer请求头包含了当前请求页面的来源页面的地址，即表示当前页面是通过此来源页面里的链接进入的。服务端一般使用 Referer<br>请求头识别访问来源，可能会以此进行统计分析、日志记录以及缓存优化等。</p>
+<p>需要注意的是 referer 实际上是 “referrer” 误拼写。参见 HTTP referer on Wikipedia （HTTP<br>referer 在维基百科上的条目）来获取更详细的信息。</p>
+<p>在以下两种情况下，Referer 不会被发送：</p>
+<p>来源页面采用的协议为表示本地文件的 “file” 或者 “data” URI；<br>当前请求页面采用的是非安全协议，而来源页面采用的是安全协议（HTTPS）。</p>
 </blockquote>
-<p>这种类型可以使用经典的 <code>and 1=1</code> 和 <code>and 1=2</code> 来判断：<br><strong>※</strong> Url 地址中输入 <code>http://xxx/abc.php?id= x and 1=1</code> 页面依旧运行正常，继续进行下一步；<br><strong>※</strong> Url 地址中继续输入 <code>http://xxx/abc.php?id= x and 1=2</code> 页面运行错误，则说明此 Sql 注入为数字型注入。<br><strong>原因如下：</strong><br>当输入 and 1=1时，后台执行 Sql 语句：<code>select * from &lt;表名&gt; where id = x and 1=1</code><br>无语法错误且逻辑判断正确，返回正常；<br>当输入 and 1=2时，后台执行 Sql 语句：<code>select * from &lt;表名&gt; where id = x and 1=2</code><br>无语法错误，但是逻辑判断为假，则返回错误。<br>假设如果这是字符型注入的话，我们输入以上语句之后应该出现如下情况：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select * from &lt;表名&gt; where id = <span class="string">'x and 1=1'</span></span><br><span class="line">select * from &lt;表名&gt; where id = <span class="string">'x and 1=2'</span></span><br></pre></td></tr></table></figure>
-<p>查询语句将 and 语句全部转换为了字符串，并没有进行 and 的逻辑判断，不会出现以上结果，故假设不成立。</p>
-<h3 id="▲-字符型判断"><a href="#▲-字符型判断" class="headerlink" title="▲ 字符型判断"></a>▲ 字符型判断</h3><p>当输入的参 x 为字符型时，通常 abc.php 中 SQL 语句类型大致如下：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from &lt;表名&gt; where id = <span class="string">'x'</span></span><br></pre></td></tr></table></figure>
+<p>总而言之，意思就是将refer添加。<br>在重发器中最后一行下面继续添加上<strong>Referer: <a href="https://www.google.com" target="_blank" rel="noopener">https://www.google.com</a></strong>，之后点击发送：<br><img src="https://img-blog.csdnimg.cn/20200923193856100.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0VkbXVuZDBB,size_16,color_FFFFFF,t_70#pic_center" alt="4"></p>
+<p>就可以看到flag出现了。</p>
+<h2 id="⚪-第十一题"><a href="#⚪-第十一题" class="headerlink" title="⚪ 第十一题"></a>⚪ 第十一题</h2><p>来到第十题之后，首先审题，发现该题目是webshell有关题目，需要对于webshell的原理有所理解。<br><img src="https://img-blog.csdnimg.cn/20200923194400573.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0VkbXVuZDBB,size_16,color_FFFFFF,t_70#pic_center" alt="1"><br>进入答题网页，发现题目下方有一行代码<code>&lt;?php @eval($_POST[&#39;shell&#39;]);?&gt;</code>，经过查询得知，该代码是一个php后门程序，也就是人们常说的 <strong>“php木马”</strong> ，其含义是<strong>执行POST来的shell’参数语句</strong>。这边首先解释一下eval的含义和作用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#96;&#x2F;&#x2F;eval&#96; — 把字符串作为PHP代码执行 </span><br><span class="line">&#96;eval(&#39;echo 123;&#39;);&#96;&#x2F;&#x2F;输出123</span><br></pre></td></tr></table></figure>
 
-<p>这种类型我们同样可以使用 <code>and &#39;1&#39;=&#39;1</code> 和 <code>and &#39;1&#39;=&#39;2</code>来判断：<br>Url 地址中输入 <code>http://xxx/abc.php?id= x&#39; and &#39;1&#39;=&#39;1</code> 页面运行正常，继续进行下一步。<br>Url 地址中继续输入 <code>http://xxx/abc.php?id= x&#39; and &#39;1&#39;=&#39;2</code> 页面运行错误，则说明此 Sql 注入为字符型注入。<br><strong>原因如下</strong><br>当输入 and ‘1’=’1时，后台执行 Sql 语句：<code>select * from &lt;表名&gt; where id = &#39;x&#39; and &#39;1&#39;=&#39;1&#39;</code><br>该语句语法正确，逻辑判断正确，返回正确。<br>当输入 and ‘1’=’2时，后台执行 Sql 语句：<code>select * from &lt;表名&gt; where id = &#39;x&#39; and &#39;1&#39;=&#39;2&#39;</code><br>该语句语法正确，但逻辑判断错误，则返回正确。</p>
+<blockquote>
+<p>所有的字符串放入到eval当中，eval会把字符串解析为php代码来进行执行，那么结合$_POST[‘posha’]的话，只要使用post传输时在name为posha的值中写入任何字符串，都可以当做php代码来执行，这个时候就有点可怕了，比如写入一段循环删除整站代码等等。</p>
+</blockquote>
+<p>—-摘自【<a href="https://zhidao.baidu.com/question/562256835.html" target="_blank" rel="noopener">百度百科</a>】<br>   理解了eval代码的作用之后，我们就会有一点头绪了。对于webshell来讲，我们可以使用常见的webshell工具中国菜刀，中国蚁剑这样的软件来进行解题。这边仅用中国蚁剑来进行演示解题。（中国菜刀太坑了 下载下来就显示有病毒，根本就不敢用。。就用蚁剑了，这边给一下蚁剑的下载地址<a href="https://pan.baidu.com/s/1Sz0jER61POYMfsLlPXODWw" target="_blank" rel="noopener"><strong>中国蚁剑</strong> 提取码：1234</a>）<br>   打开中国蚁剑后，首先在空白处右键添加数据，将题目网址输入后创建，并右键选择“文件管理”来打开目录：<br>   <img src="https://img-blog.csdnimg.cn/20200927204529571.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0VkbXVuZDBB,size_16,color_FFFFFF,t_70#pic_center" alt="2"><br>   进入目录后便可以找到flag.txt文件，获取flag。</p>
+<h2 id="⚪-第十二题-yysy不要看到题目难度星级高就退缩，这题是个纸老虎"><a href="#⚪-第十二题-yysy不要看到题目难度星级高就退缩，这题是个纸老虎" class="headerlink" title="⚪ 第十二题(yysy不要看到题目难度星级高就退缩，这题是个纸老虎)"></a>⚪ 第十二题(yysy不要看到题目难度星级高就退缩，这题是个纸老虎)</h2><p>进入题目页面，查看题目涉及知识，经题目可知该题目主要涉及js的相关知识。<br><img src="https://img-blog.csdnimg.cn/20200927210350829.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0VkbXVuZDBB,size_16,color_FFFFFF,t_70#pic_center" alt="1"><br>进入答题页面，发现就要输入密码才可以继续前进：<br><img src="https://img-blog.csdnimg.cn/20200928200400910.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0VkbXVuZDBB,size_16,color_FFFFFF,t_70#pic_center" alt="2"><br>首先，打开网页源码，查看源码发现底部有一串申必数字：<br><img src="https://img-blog.csdnimg.cn/2020092820060062.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0VkbXVuZDBB,size_16,color_FFFFFF,t_70#pic_center" alt="3"><br>而根据所学知识可以发现，带有“/x”前缀的数字代表着该数字是16进制的意思。因此，我们将这串数字复制粘贴下来并将其十六进制转十进制，得到一串十进制数字结果：<br><img src="https://img-blog.csdnimg.cn/20200928200835141.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0VkbXVuZDBB,size_16,color_FFFFFF,t_70#pic_center" alt="4"><br>这串数字并不是毫无意义，而我们发现其中每过两三个数字就有一个44，于是推测该串十进制数字还可以根据ASCII码格式继续转换，于是我们对照ASCII码表继续进行转换，得到如下结果：<br><img src="https://img-blog.csdnimg.cn/20200928201046557.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0VkbXVuZDBB,size_16,color_FFFFFF,t_70#pic_center" alt="5"><br><img src="https://img-blog.csdnimg.cn/20200928201055236.png#pic_center" alt="6"><br>得到如下结果后，如果继续进行转换，便可以直接得到flag。按照题目格式直接输入即可得到正确flag。<br><img src="https://img-blog.csdnimg.cn/20200928201210804.png#pic_center" alt="7"><br>至此， 攻防世界web篇新手题目到此结束，</p>
+<h1 id="🔺-总结"><a href="#🔺-总结" class="headerlink" title="🔺 总结"></a>🔺 总结</h1><p>攻防世界wed篇的新手题目做完后，给我的第一感觉就是题目类型的多样性，以及让我对于web题目难度有了一个全新的认识（当然也锻炼了我的审题能力），但是总的来说，web类的题目种类虽然繁杂多样，但是终究离不开那几个大规律：从源码找信息、疑似密码学的解题方式（？）、对于php语句等的认识……总体上找到窍门后便可以大大增加技术上的支持性，降低解题难度。但新手题目终究是新手题目，其中的题目难度还只是入门级，因此想要继续提升自己的web题目解题水平，还是要继续向着进阶难度的题目进行训练。</p>
 
     </div>
 </article>
@@ -219,7 +225,7 @@
 <script>
 	if(!window.commentConfig) {
       window.commentConfig = {}
-      window.commentConfig.title = 'SQL注入点的判断'
+      window.commentConfig.title = '攻防世界题目回顾（新手题目  下）'
     }
 </script>
 
@@ -361,12 +367,6 @@
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2020/02/15/%E6%9C%AC%E4%BA%BA%E7%9A%84%E9%A6%96%E6%AC%A1%E6%90%AD%E5%BB%BAhexo+github%E5%8D%9A%E5%AE%A2/">本人的首次搭建hexo+github博客</a>
-                </span>
-            </li>
-            
-            <li class="list-group-item">
-                <span class="post-title">
                     <a href="/2020/03/29/SQL%E9%9D%B6%E5%9C%BA%E7%9A%84%E5%BB%BA%E7%AB%8B/">SQL靶场的建立</a>
                 </span>
             </li>
@@ -391,7 +391,13 @@
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2020/08/16/%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5%202/">联合查询注入 2</a>
+                    <a href="/2020/08/01/SQL%E6%B3%A8%E5%85%A5%E7%82%B9%E7%9A%84%E5%88%A4%E6%96%AD/">SQL注入点的判断</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2020/08/08/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E6%9C%AC%E7%AC%94%E8%AE%B0_1/">sql注入基本笔记_1</a>
                 </span>
             </li>
             
@@ -424,17 +430,17 @@
 
                 
                 <li>
-                    <a href="/2020/08/01/SQL%E6%B3%A8%E5%85%A5%E7%82%B9%E7%9A%84%E5%88%A4%E6%96%AD/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                    <a href="/2020/09/28/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E9%A2%98%E7%9B%AE%E5%9B%9E%E9%A1%BE%EF%BC%88%E6%96%B0%E6%89%8B%E9%A2%98%E7%9B%AE%20%20%E4%B8%8B%EF%BC%89/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
                 </li>
                 
                 
                 <li>
-                    <a href="/2020/08/01/SQL%E6%B3%A8%E5%85%A5%E7%82%B9%E7%9A%84%E5%88%A4%E6%96%AD/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                    <a href="/2020/09/28/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E9%A2%98%E7%9B%AE%E5%9B%9E%E9%A1%BE%EF%BC%88%E6%96%B0%E6%89%8B%E9%A2%98%E7%9B%AE%20%20%E4%B8%8B%EF%BC%89/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
                 </li>
                 
                 
                 <li>
-                    <a href="/2020/08/01/SQL%E6%B3%A8%E5%85%A5%E7%82%B9%E7%9A%84%E5%88%A4%E6%96%AD/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                    <a href="/2020/09/28/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E9%A2%98%E7%9B%AE%E5%9B%9E%E9%A1%BE%EF%BC%88%E6%96%B0%E6%89%8B%E9%A2%98%E7%9B%AE%20%20%E4%B8%8B%EF%BC%89/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
                 </li>
                 
             </ul>
@@ -556,7 +562,7 @@
 <script src="https://myau.moe/js/comment/gitment.browser.js"></script>
 <script>
     if(window.commentConfig) {
-      window.commentConfig.id = 'Sat Aug 01 2020 19:24:53 GMT+0800'
+      window.commentConfig.id = 'Mon Sep 28 2020 20:21:53 GMT+0800'
       window.commentConfig.owner = 'Edmund0A'
       window.commentConfig.repo = ''
       window.commentConfig.client_id = ''
@@ -564,7 +570,7 @@
       window.commentConfig.redirect_uri = ''
     } else {
       window.commentConfig = {
-      	id: 'Sat Aug 01 2020 19:24:53 GMT+0800',
+      	id: 'Mon Sep 28 2020 20:21:53 GMT+0800',
         owner: 'Edmund0A',
         repo: '',
         client_id: '',
