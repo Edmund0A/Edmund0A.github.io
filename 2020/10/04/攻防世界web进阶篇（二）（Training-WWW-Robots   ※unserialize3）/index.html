@@ -10,7 +10,7 @@
     
     
     
-    <title>攻防世界web进阶篇（baby_web   warmup） | Hexo</title>
+    <title>攻防世界web进阶篇（二）（Training-WWW-Robots   ※unserialize3） | Hexo</title>
     <link href="https://Edmund0A.github.io" rel="prefetch" />
 
     
@@ -156,19 +156,19 @@
         <i class="fa fa-home"></i>
         <a href="https://Edmund0A.github.io">Hexo</a>
         >
-        <span>攻防世界web进阶篇（baby_web   warmup）</span>
+        <span>攻防世界web进阶篇（二）（Training-WWW-Robots   ※unserialize3）</span>
     </div>
     <!-- 大型设备详细文章 -->
     <div class="hidden-xs">
         <div class="title-article">
             <h1>
-                <a href="/2020/09/30/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cweb%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88baby_web%20%20%20warmup%EF%BC%89/">攻防世界web进阶篇（baby_web   warmup）</a>
+                <a href="/2020/10/04/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cweb%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%88Training-WWW-Robots%20%20%20%E2%80%BBunserialize3%EF%BC%89/">攻防世界web进阶篇（二）（Training-WWW-Robots   ※unserialize3）</a>
             </h1>
         </div>
         <div class="tag-article">
             
             <span class="label label-gal">
-                <i class="fa fa-calendar"></i> 2020-09-30
+                <i class="fa fa-calendar"></i> 2020-10-04
             </span>
             
         </div>
@@ -178,11 +178,11 @@
         <center>
             <div class="title-article">
                 <h4>
-                    <a href="/2020/09/30/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cweb%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88baby_web%20%20%20warmup%EF%BC%89/">攻防世界web进阶篇（baby_web   warmup）</a>
+                    <a href="/2020/10/04/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cweb%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%88Training-WWW-Robots%20%20%20%E2%80%BBunserialize3%EF%BC%89/">攻防世界web进阶篇（二）（Training-WWW-Robots   ※unserialize3）</a>
                 </h4>
             </div>
             <p>
-                <i class="fa fa-calendar"></i> 2020-09-30
+                <i class="fa fa-calendar"></i> 2020-10-04
             </p>
             <p>
                 
@@ -191,21 +191,21 @@
         </center>
     </div>
     <div class="content-article">
-        <h1 id="🔺-前言"><a href="#🔺-前言" class="headerlink" title="🔺 前言"></a>🔺 前言</h1><p>在经过攻防世界新手篇web题目的洗礼后，深知了自己的无力，认识到学习web是一个任重而道远的过程，题目样式的多变性是其不变的特点，但是本人深知一句话，对于敢于挑战更难题目的人来说，未来的道路永远是为他而不断延伸的（意思就是，不要停下来刷题的脚步啊）。</p>
-<h2 id="⚪-baby-web"><a href="#⚪-baby-web" class="headerlink" title="⚪ baby_web"></a>⚪ baby_web</h2><p><img src="https://img-blog.csdnimg.cn/20200928204743409.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0VkbXVuZDBB,size_16,color_FFFFFF,t_70#pic_center" alt="1"><br>照常，我们首先审题。题目给的描述里有说“想想初始的页面是哪个”，那么该题目有可能是对于页面更改有关，我们来打开题目页面：<br><img src="https://img-blog.csdnimg.cn/20200928204914441.png#pic_center" alt="2"><br>有了题目给的提示，我们所要注意的点其实就只有地址栏一个地方了。我们发现转移到的地址并不是一般的地址，后面是跟着一个“1.php”的，也就是说这个并不是默认地址。那么就需要想个办法把默认地址搞出来，初步推测flag就在其中了。<br>我们继续祭出老大哥 <strong>“burpsuite”</strong> <del>（大哥今天我们去堵谁）</del> ，来截取这个网站强行让他转移到初始网址。经过抓包后，发现了开头的异样：<br><img src="https://img-blog.csdnimg.cn/20200928210049482.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0VkbXVuZDBB,size_16,color_FFFFFF,t_70#pic_center" alt="3"></p>
-<h1 id="好-家-伙-！"><a href="#好-家-伙-！" class="headerlink" title="好  家  伙  ！"></a>好  家  伙  ！</h1><p><del>想不到这道题目浓眉大眼的居然还藏着这一手</del> ，发现原因后直接改成index.php来让他强行转到初始页面，在发送给Repeater并改正后，直接发送，这时候我们可以看到他隐藏的flag提示。<br><img src="https://img-blog.csdnimg.cn/20200928210343534.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0VkbXVuZDBB,size_16,color_FFFFFF,t_70#pic_center" alt="4"><br><del>yysy你就算说了Flag不在这里我也不会信</del> ，找到flag，得到答案，此题结束。</p>
-<h2 id="⚪-※warmup"><a href="#⚪-※warmup" class="headerlink" title="⚪ ※warmup"></a>⚪ ※warmup</h2><blockquote>
-<p>yysy这道题目让我感受到了深深的无力，毫不留情的解开我刷题不足的现实。。因为这道题考点很简单一点也不复杂，就只考验了php基本语言语法的用法，而我在这道题上面耗了老久（X_x）还是得继续努力啊</p>
+        <h2 id="⚪Training-WWW-Robots"><a href="#⚪Training-WWW-Robots" class="headerlink" title="⚪Training-WWW-Robots"></a>⚪Training-WWW-Robots</h2><p>这道题目属于考验对于robots协议掌握程度，它的解题难度并不高，只有简单几步。首先我们看题：<br><img src="https://img-blog.csdnimg.cn/20200930085627703.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0VkbXVuZDBB,size_16,color_FFFFFF,t_70#pic_center" alt="1"><br>很显然该题目的考点已经写在上面了，那么我们打开题目页面之后直接就去尝试查看robots协议：<br><img src="https://img-blog.csdnimg.cn/20200930085820858.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0VkbXVuZDBB,size_16,color_FFFFFF,t_70#pic_center" alt="2"><br><img src="https://img-blog.csdnimg.cn/20200930085855455.png#pic_center" alt="3"><br>发现已经把flag的地址给出了。打开地址即可得到我们需要的flag：<br><img src="https://img-blog.csdnimg.cn/20200930090001205.png#pic_center" alt="4"><br>本题结束。</p>
+<h2 id="⚪-※-unserialize3"><a href="#⚪-※-unserialize3" class="headerlink" title="⚪ ※ unserialize3"></a>⚪ ※ unserialize3</h2><p><del>（又是一道考验php语言功底的题目，我无了）</del><br>首先看题目：“<br><img src="https://img-blog.csdnimg.cn/20200930092127566.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0VkbXVuZDBB,size_16,color_FFFFFF,t_70#pic_center" alt="1"><br>没有给出任何提示。。再打开题目页面：<br><img src="https://img-blog.csdnimg.cn/20200930092209316.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0VkbXVuZDBB,size_16,color_FFFFFF,t_70#pic_center" alt="2"><br>是一串php语言编码 <del>（心里一凉）</del> ，经过资料的查找，总算是大概搞懂了这几段代码里面重要元素的意思：<br>首先，<code>__wakeup</code>这段</p>
+<blockquote>
+<p><code>__wakeup</code>经常用在反序列化操作中，例如重新建立数据库连接，或执行其它初始化操作。</p>
 </blockquote>
-<p>那么首先看题目，<br><img src="https://img-blog.csdnimg.cn/20200929194831310.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0VkbXVuZDBB,size_16,color_FFFFFF,t_70#pic_center" alt="1"></p>
-<p>好，打开题目网站，只见一张滑稽大脸糊过来，题目上也没有任何提示 <del>（而如今一道这么简单的题目我浪费这么大力气。。我感觉这个滑稽就是在嘲讽我一样）</del>  ，那么就一如往常打开源码，发现源码中有一点提示：<br><img src="https://img-blog.csdnimg.cn/20200929195447569.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0VkbXVuZDBB,size_16,color_FFFFFF,t_70#pic_center" alt="2"><br><img src="https://img-blog.csdnimg.cn/20200929195455781.png#pic_center" alt="3"><br>题目给了我们一个后缀<code>&lt;!--source.php--&gt;</code>，我们尝试在地址栏最后加入，可以发现网页发生了变化，出来了一串php语言文字：<br><img src="https://img-blog.csdnimg.cn/20200929200005184.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0VkbXVuZDBB,size_16,color_FFFFFF,t_70#pic_center" alt="4"></p>
-<p>解题的关键不出意外就在这些php语言编码之中 <del>（我丢人的开始）</del>  ，先审计php代码，从前面几行我们可以看到 <code>$whitelist = [&quot;source&quot;=&gt;&quot;source.php&quot;,&quot;hint&quot;=&gt;&quot;hint.php&quot;];</code> ，可以得到另一个地址，在地址栏后面换成” <code>/hint.php</code> “后,转入的新页面：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200929200847185.png#pic_center" alt="5"></p>
-<p>都吼起来了，那么答案应该就藏在这一页的某处，需要我们自主去寻找了。我们继续看源码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">if (! empty($_REQUEST[&#39;file&#39;])  &#x2F;&#x2F;$_REQUEST[&#39;file&#39;] &#x2F;&#x2F;值非空</span><br><span class="line">&amp;&amp; is_string($_REQUEST[&#39;file&#39;])  &#x2F;&#x2F;$_REQUEST[&#39;file&#39;]&#x2F;&#x2F;值为字符串</span><br><span class="line"> &amp;&amp; emmm::checkFile($_REQUEST[&#39;file&#39;])              &#x2F;&#x2F;能够通过checkFile函数校验</span><br><span class="line">) &#123;</span><br><span class="line">include $_REQUEST[&#39;file&#39;];                          &#x2F;&#x2F;包含$_REQUEST[&#39;file&#39;]文件</span><br><span class="line">exit;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">echo &quot;&lt;br&gt;&lt;img src&#x3D;\&quot;https:&#x2F;&#x2F;i.loli.net&#x2F;2018&#x2F;11&#x2F;01&#x2F;5bdb0d93dc794.jpg\&quot; &#x2F;&gt;&quot;;</span><br><span class="line">                                                    &#x2F;&#x2F;打印大号滑稽</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<p>发现这段源码要求我们符合几个条件才能得到flag，即对于值的要求是：&lt;值为非空&gt;&lt;值为字符串&gt;&lt;能够通过checkFile()的检验&gt;。<br>这之后我们再看checkfile()代码，可以发现其中包含着四个if语句。而其中各个if语句的含义是：</p>
-<p>第一个if语句对变量进行检验，要求<code>$page</code>为字符串，否则返回false；<br>第二个if语句判断 <code>$page</code> 是否存在于 <code>$whitelist数组</code> 中，存在则返回true；<br>第三个if语句判断截取后的 <code>$page</code> 是否存在于 <code>$whitelist数组</code> 中，截取 <code>$page</code> 中“?”前部分，存在则返回true；<br>第四个if语句判断url解码并截取后的 <code>$page</code> 是否存在于 <code>$whitelist</code> 中，存在则返回true。</p>
-<p>若以上四个if语句均未返回值，则返回false；<br>有三个if语句可以返回true，第二个语句直接判断 <code>$page</code> ，不可用；<br>第三个语句截取’?’前部分，由于?被后部分被解析为get方式提交的参数，也不可利用；<br>第四个if语句中，先进行url解码再截取，因此我们可以将?经过两次url编码，在服务器端提取参数时解码一次，checkFile函数中解码一次，仍会解码为’?’，仍可通过第四个if语句校验。（’?’两次编码值为’%253f’）,构造url：<br><a href="http://399fe153-1f62-43d5-a67f-e645a0e7ac66.node3.buuoj.cn/source.php?file=source.php%253f../ffffllllaaaagggg经过测试发现无返回值，这可能是因为我们不知道ffffllllaaaagggg文件存放的具体位置，所以依次增加`../`,最终成功拿到flag。(这一段是参考别人博客整的，因为以个人水平实在有些难以理解，研究许久也只是一知半解，但大概得知了flag的获取方式)" target="_blank" rel="noopener">http://399fe153-1f62-43d5-a67f-e645a0e7ac66.node3.buuoj.cn/source.php?file=source.php%253f../ffffllllaaaagggg经过测试发现无返回值，这可能是因为我们不知道ffffllllaaaagggg文件存放的具体位置，所以依次增加`../`,最终成功拿到flag。(这一段是参考别人博客整的，因为以个人水平实在有些难以理解，研究许久也只是一知半解，但大概得知了flag的获取方式)</a><br><img src="https://img-blog.csdnimg.cn/20200930084127263.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0VkbXVuZDBB,size_16,color_FFFFFF,t_70#pic_center" alt="6"></p>
+<p>所以可以猜测被反序列化了<br>但是可以看到这里没有特别对哪个字符串序列化，所以把xctf类实例化后，进行反序列化。<br>利用php中的new运算符，实例化类xctf。<br>【<strong>说人话的话意思就是</strong>：<br>通过 <code>_wakeup</code> 这个代码可以看出来这段代码可以被反序列化漏洞作为突破点，而进行漏洞击破则需要我们绕过 <code>_wakeup</code> 这个函数以避免被exit掉。】<br>而反序列化漏洞的原理是（以下引自大佬博客，这些以我的水平还无法触及orz）</p>
+<blockquote>
+<p>当序列化字符串中表示对象属性个数的值大于真实的属性个数时会跳过__wakeup的执行。<br>我们在本地搭环境获得序列化的值</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">class xctf&#123;</span><br><span class="line">public $flag &#x3D; &#39;111&#39;;</span><br><span class="line">public function __wakeup()&#123;</span><br><span class="line">exit(&#39;bad requests&#39;);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">$x&#x3D;new xctf();</span><br><span class="line">echo serialize($x);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>获取的序列化值：<br>O:4:”xctf”:2:{s:4:”flag”;s:3:”111”;}</p>
+</blockquote>
+<p>传入code参数后可获得flag。<br><img src="https://img-blog.csdnimg.cn/20201004200819898.png#pic_center" alt="3"><br>【yysy这题真的给我搞麻了，理解反序列化花了不少时间，因此打上了代表高难的“※”标】</p>
 
     </div>
 </article>
@@ -216,7 +216,7 @@
 <script>
 	if(!window.commentConfig) {
       window.commentConfig = {}
-      window.commentConfig.title = '攻防世界web进阶篇（baby_web   warmup）'
+      window.commentConfig.title = '攻防世界web进阶篇（二）（Training-WWW-Robots   ※unserialize3）'
     }
 </script>
 
@@ -276,13 +276,13 @@
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2020/10/04/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cweb%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%88Training-WWW-Robots%EF%BC%89%EF%BC%88%E2%80%BBunserialize3%EF%BC%89/">攻防世界web进阶篇（二）（Training-WWW-Robots）（※unserialize3）</a>
+                    <a href="/2020/10/04/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cweb%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%88Training-WWW-Robots%20%20%20%E2%80%BBunserialize3%EF%BC%89/">攻防世界web进阶篇（二）（Training-WWW-Robots   ※unserialize3）</a>
                 </span>
             </li>
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2020/09/30/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cweb%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88baby_web%20%20%20warmup%EF%BC%89/">攻防世界web进阶篇（baby_web   warmup）</a>
+                    <a href="/2020/09/30/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cweb%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%88baby_web%20%20%20warmup%EF%BC%89/">攻防世界web进阶篇（一）（baby_web   warmup）</a>
                 </span>
             </li>
             
@@ -358,13 +358,13 @@
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2020/07/12/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%E5%9B%9E%E5%A4%B4/">sql注入基础回头</a>
+                    <a href="/2020/03/29/SQL%E9%9D%B6%E5%9C%BA%E7%9A%84%E5%BB%BA%E7%AB%8B/">SQL靶场的建立</a>
                 </span>
             </li>
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2020/07/19/SQL%E6%B3%A8%E5%85%A5%20-%20-%20-%E7%8C%9C%E8%A7%A3%E5%AE%9E%E8%B7%B5/">SQL注入 - - -猜解实践</a>
+                    <a href="/2020/07/12/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%E5%9B%9E%E5%A4%B4/">sql注入基础回头</a>
                 </span>
             </li>
             
@@ -400,13 +400,13 @@
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2020/09/30/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cweb%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88baby_web%20%20%20warmup%EF%BC%89/">攻防世界web进阶篇（baby_web   warmup）</a>
+                    <a href="/2020/09/28/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E9%A2%98%E7%9B%AE%E5%9B%9E%E9%A1%BE%EF%BC%88%E6%96%B0%E6%89%8B%E9%A2%98%E7%9B%AE%20%20%E4%B8%8B%EF%BC%89/">攻防世界题目回顾（新手题目  下）</a>
                 </span>
             </li>
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2020/10/04/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cweb%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%88Training-WWW-Robots%EF%BC%89%EF%BC%88%E2%80%BBunserialize3%EF%BC%89/">攻防世界web进阶篇（二）（Training-WWW-Robots）（※unserialize3）</a>
+                    <a href="/2020/10/04/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cweb%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%88Training-WWW-Robots%20%20%20%E2%80%BBunserialize3%EF%BC%89/">攻防世界web进阶篇（二）（Training-WWW-Robots   ※unserialize3）</a>
                 </span>
             </li>
             
@@ -421,17 +421,17 @@
 
                 
                 <li>
-                    <a href="/2020/09/30/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cweb%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88baby_web%20%20%20warmup%EF%BC%89/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                    <a href="/2020/10/04/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cweb%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%88Training-WWW-Robots%20%20%20%E2%80%BBunserialize3%EF%BC%89/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
                 </li>
                 
                 
                 <li>
-                    <a href="/2020/09/30/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cweb%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88baby_web%20%20%20warmup%EF%BC%89/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                    <a href="/2020/10/04/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cweb%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%88Training-WWW-Robots%20%20%20%E2%80%BBunserialize3%EF%BC%89/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
                 </li>
                 
                 
                 <li>
-                    <a href="/2020/09/30/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cweb%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88baby_web%20%20%20warmup%EF%BC%89/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                    <a href="/2020/10/04/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cweb%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%88Training-WWW-Robots%20%20%20%E2%80%BBunserialize3%EF%BC%89/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
                 </li>
                 
             </ul>
@@ -553,7 +553,7 @@
 <script src="https://myau.moe/js/comment/gitment.browser.js"></script>
 <script>
     if(window.commentConfig) {
-      window.commentConfig.id = 'Wed Sep 30 2020 08:43:23 GMT+0800'
+      window.commentConfig.id = 'Sun Oct 04 2020 20:10:06 GMT+0800'
       window.commentConfig.owner = 'Edmund0A'
       window.commentConfig.repo = ''
       window.commentConfig.client_id = ''
@@ -561,7 +561,7 @@
       window.commentConfig.redirect_uri = ''
     } else {
       window.commentConfig = {
-      	id: 'Wed Sep 30 2020 08:43:23 GMT+0800',
+      	id: 'Sun Oct 04 2020 20:10:06 GMT+0800',
         owner: 'Edmund0A',
         repo: '',
         client_id: '',
