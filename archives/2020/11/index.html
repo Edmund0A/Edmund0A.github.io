@@ -10,7 +10,7 @@
     
     
     
-    <title>sql注入基础回头 | Hexo</title>
+    <title>archive_a | Hexo</title>
     <link href="https://Edmund0A.github.io" rel="prefetch" />
 
     
@@ -107,7 +107,7 @@
                 
                 
                 
-                <li class="">
+                <li class="current">
                     <a href="/archives">
                         <i class="fa fa-archive"></i>归档
                     </a>
@@ -150,27 +150,19 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 gal-right" id="mainstay">
-                    
-<article class="article well article-body" id="article">
+                    <article class="article well article-body" id="article-archive">
     <div class="breadcrumb">
         <i class="fa fa-home"></i>
         <a href="https://Edmund0A.github.io">Hexo</a>
         >
-        <span>sql注入基础回头</span>
+        <span>归档</span>
     </div>
     <!-- 大型设备详细文章 -->
     <div class="hidden-xs">
         <div class="title-article">
             <h1>
-                <a href="/2020/07/12/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%E5%9B%9E%E5%A4%B4/">sql注入基础回头</a>
+                <a href="/archives">归档</a>
             </h1>
-        </div>
-        <div class="tag-article">
-            
-            <span class="label label-gal">
-                <i class="fa fa-calendar"></i> 2020-07-12
-            </span>
-            
         </div>
     </div>
     <!-- 小型设备详细文章 -->
@@ -178,50 +170,83 @@
         <center>
             <div class="title-article">
                 <h4>
-                    <a href="/2020/07/12/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%E5%9B%9E%E5%A4%B4/">sql注入基础回头</a>
+                    <a href="/archives">归档</a>
                 </h4>
             </div>
-            <p>
-                <i class="fa fa-calendar"></i> 2020-07-12
-            </p>
-            <p>
-                
-                
-            </p>
         </center>
     </div>
-    <div class="content-article">
-        <p>🔺⚪▲</p>
-<h1 id="🔺sql注入的概念"><a href="#🔺sql注入的概念" class="headerlink" title="🔺sql注入的概念"></a><strong>🔺sql注入的概念</strong></h1><p> sql注入是指应用对于使用者所输入的非法恶意语句的审查未经过判断或过滤不严，导致使用者刻意将恶意sql查询或添加语句输入参数中，通过欺骗数据库进行非授权的恶意查询，进行解析攻击。</p>
-<h1 id="🔺web三层架构的解析"><a href="#🔺web三层架构的解析" class="headerlink" title="🔺web三层架构的解析"></a><strong>🔺web三层架构的解析</strong></h1><p>三层架构就是遵循符合“高内聚，低耦合”思想，将各个功能模块划分为<strong>表示层</strong>（UI）、<strong>业务逻辑层</strong>（BLL）和<strong>数据访问层</strong>（DAL）三层架构，各层之间采用接口相互访问，并通过<strong>对象模型的实体类</strong>作为数据传递的载体，不同的对象模型的实体类一般对应于数据库的不同表，实体类的属性与数据库表的字段名一致。（摘自<a href="https://baike.baidu.com/item/%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84/11031448?fr=aladdin" target="_blank" rel="noopener">百度百科词条</a>）</p>
-<h1 id="🔺sql注入原理"><a href="#🔺sql注入原理" class="headerlink" title="🔺sql注入原理"></a>🔺sql注入原理</h1><p>每当我们访问动态网页时, Web 服务器会向数据访问层发起 Sql 查询请求，如果权限验证通过就会执行 Sql 语句。结合用户的输入数据动态构造 Sql 语句，如果用户输入的数据被构造成恶意 Sql 代码，Web 应用又未对动态构造的 Sql 语句使用的参数进行审查，则会造成恶意语句的渗透，便是sql注入的基本形式。</p>
-<h2 id="⚪sql注入影响"><a href="#⚪sql注入影响" class="headerlink" title="⚪sql注入影响"></a>⚪sql注入影响</h2><p>▲ 攻击者不经授权便可获取到用户数据，借此盗取用户隐私信息；<br>▲ 若网站拥有写入权限，攻击者甚至可以写入木马，对网站造成极大损害；<br>▲ 攻击者拥有对其网站数据库的修改权限，可以肆意更改数据库中的内容；<br>▲ 攻击者可以通过其他步骤获取到服务器的最高权限，并通过后门等方法，对服务器进行控制修改与操作。</p>
-<h2 id="⚪sql注入常用语句"><a href="#⚪sql注入常用语句" class="headerlink" title="⚪sql注入常用语句"></a>⚪sql注入常用语句</h2><p>▲ 判断是否存在注入点</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">; <span class="keyword">and</span> <span class="number">1</span>=<span class="number">1</span> <span class="keyword">and</span> <span class="number">1</span>=<span class="number">2</span></span><br></pre></td></tr></table></figure>
-<p>▲ 猜表</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">and</span> <span class="number">0</span>&lt;&gt;(select count(*) from *) </span><br><span class="line"><span class="keyword">and</span> <span class="number">0</span>&lt;&gt;(select count(*) from admin) ---判断是否存在admin这张表</span><br></pre></td></tr></table></figure>
-<p>▲ 猜帐号数目（如果遇到0&lt; 返回正确页面 1&lt;返回错误页面说明帐号数目就是1个 ）</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">and</span> <span class="number">0</span>&lt;(select count(*) from admin) </span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>&lt;(select count(*) from admin)</span><br></pre></td></tr></table></figure>
-<p>▲ 猜解字段名称 （在len( ) 括号里面加上我们想到的字段名称. ）</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(*)&gt;<span class="number">0</span>)-- </span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(用户字段名称name)&gt;<span class="number">0</span>) </span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(_blank&gt;密码字段名称password)&gt;<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-<p>▲ 猜解各个字段的长度 （猜解长度就是把&gt;0变换 直到返回正确页面为止 ）</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(*)&gt;<span class="number">0</span>) </span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(name)&gt;<span class="number">6</span>) 错误 </span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(name)&gt;<span class="number">5</span>) 正确 长度是<span class="number">6</span> </span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(name)=<span class="number">6</span>) 正确</span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(password)&gt;<span class="number">11</span>) 正确 </span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(password)&gt;<span class="number">12</span>) 错误 长度是<span class="number">12</span> </span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(password)=<span class="number">12</span>) 正确</span><br></pre></td></tr></table></figure>
-
-
-
+    <div class="content-article" style="margin-top: 30px;">
+        
+        
+            <h1 style="font-size: 24px; margin-top: 40px;">2020年</h1>
+            
+        <div class="alert alert-info" style="font-size: 14px; line-height: 2; font-weight: bold;">
+            
+             
+             
+                        <a href="/2020/11/11/php%E8%87%AA%E5%AD%A6%EF%BC%88%E4%B8%80%EF%BC%89/">php自学（一）</a>
+                        <br>
+            
+             
+                        <a href="/2020/10/12/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cweb%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%88Web_php_unserialize%EF%BC%89%EF%BC%88upload1%EF%BC%89/">攻防世界web进阶篇（三）（Web_php_unserialize）（upload1）</a>
+                        <br>
+            
+             
+                        <a href="/2020/10/04/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cweb%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%88Training-WWW-Robots%20%20%20%E2%80%BBunserialize3%EF%BC%89/">攻防世界web进阶篇（二）（Training-WWW-Robots   ※unserialize3）</a>
+                        <br>
+            
+             
+                        <a href="/2020/09/30/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cweb%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%88baby_web%20%20%20warmup%EF%BC%89/">攻防世界web进阶篇（一）（baby_web   warmup）</a>
+                        <br>
+            
+             
+                        <a href="/2020/09/21/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E9%A2%98%E7%9B%AE%E5%9B%9E%E9%A1%BE%EF%BC%88%E6%96%B0%E6%89%8B%E9%A2%98%E7%9B%AE%20%20%E4%B8%AD%EF%BC%89/">攻防世界题目回顾（新手题目  中）</a>
+                        <br>
+            
+             
+                        <a href="/2020/09/19/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E9%A2%98%E7%9B%AE%E5%9B%9E%E9%A1%BE%EF%BC%88%E6%96%B0%E6%89%8B%E9%A2%98%E7%9B%AE%20%20%E4%B8%8A%EF%BC%89/">攻防世界题目回顾（新手题目  上）</a>
+                        <br>
+            
+             
+                        <a href="/2020/08/16/%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5%202/">联合查询注入 2</a>
+                        <br>
+            
+             
+                        <a href="/2020/08/08/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E6%9C%AC%E7%AC%94%E8%AE%B0_1/">sql注入基本笔记_1</a>
+                        <br>
+            
+             
+                        <a href="/2020/08/01/SQL%E6%B3%A8%E5%85%A5%E7%82%B9%E7%9A%84%E5%88%A4%E6%96%AD/">SQL注入点的判断</a>
+                        <br>
+            
+             
+                        <a href="/2020/07/26/SQL%E6%B3%A8%E5%85%A5%E7%BB%95%E8%BF%87/">SQL注入绕过</a>
+                        <br>
+            
+             
+                        <a href="/2020/07/19/SQL%E6%B3%A8%E5%85%A5%20-%20-%20-%E7%8C%9C%E8%A7%A3%E5%AE%9E%E8%B7%B5/">SQL注入 - - -猜解实践</a>
+                        <br>
+            
+             
+                        <a href="/2020/07/12/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%E5%9B%9E%E5%A4%B4/">sql注入基础回头</a>
+                        <br>
+            
+             
+                        <a href="/2020/03/29/SQL%E9%9D%B6%E5%9C%BA%E7%9A%84%E5%BB%BA%E7%AB%8B/">SQL靶场的建立</a>
+                        <br>
+            
+             
+                        <a href="/2020/02/15/%E6%9C%AC%E4%BA%BA%E7%9A%84%E9%A6%96%E6%AC%A1%E6%90%AD%E5%BB%BAhexo+github%E5%8D%9A%E5%AE%A2/">本人的首次搭建hexo+github博客</a>
+                        <br>
+            
+             
+                        <a href="/2020/02/07/hello-world/">Hello World</a>
+                        <br>
+            
+                    </div>
+        
     </div>
 </article>
-
-
-<div id="comments-template"></div>
-<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-<script>
-	if(!window.commentConfig) {
-      window.commentConfig = {}
-      window.commentConfig.title = 'sql注入基础回头'
-    }
-</script>
-
                 </div>
                 <aside class="col-md-4 gal-left" id="sidebar">
     <!-- 此为sidebar的搜索框, 非搜索结果页面 -->
@@ -354,19 +379,19 @@
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2020/02/07/hello-world/">Hello World</a>
-                </span>
-            </li>
-            
-            <li class="list-group-item">
-                <span class="post-title">
                     <a href="/2020/02/15/%E6%9C%AC%E4%BA%BA%E7%9A%84%E9%A6%96%E6%AC%A1%E6%90%AD%E5%BB%BAhexo+github%E5%8D%9A%E5%AE%A2/">本人的首次搭建hexo+github博客</a>
                 </span>
             </li>
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2020/07/12/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%E5%9B%9E%E5%A4%B4/">sql注入基础回头</a>
+                    <a href="/2020/03/29/SQL%E9%9D%B6%E5%9C%BA%E7%9A%84%E5%BB%BA%E7%AB%8B/">SQL靶场的建立</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2020/07/26/SQL%E6%B3%A8%E5%85%A5%E7%BB%95%E8%BF%87/">SQL注入绕过</a>
                 </span>
             </li>
             
@@ -378,7 +403,7 @@
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2020/08/16/%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5%202/">联合查询注入 2</a>
+                    <a href="/2020/08/08/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E6%9C%AC%E7%AC%94%E8%AE%B0_1/">sql注入基本笔记_1</a>
                 </span>
             </li>
             
@@ -396,7 +421,7 @@
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2020/09/30/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cweb%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%88baby_web%20%20%20warmup%EF%BC%89/">攻防世界web进阶篇（一）（baby_web   warmup）</a>
+                    <a href="/2020/10/04/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cweb%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%88Training-WWW-Robots%20%20%20%E2%80%BBunserialize3%EF%BC%89/">攻防世界web进阶篇（二）（Training-WWW-Robots   ※unserialize3）</a>
                 </span>
             </li>
             
@@ -423,17 +448,17 @@
 
                 
                 <li>
-                    <a href="/2020/07/12/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%E5%9B%9E%E5%A4%B4/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                    <a href="/archives/2020/11/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
                 </li>
                 
                 
                 <li>
-                    <a href="/2020/07/12/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%E5%9B%9E%E5%A4%B4/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                    <a href="/archives/2020/11/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
                 </li>
                 
                 
                 <li>
-                    <a href="/2020/07/12/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%E5%9B%9E%E5%A4%B4/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                    <a href="/archives/2020/11/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
                 </li>
                 
             </ul>
@@ -550,30 +575,6 @@
 <script src="/js/blog.js"></script>
 
 
-
-
-<script src="https://myau.moe/js/comment/gitment.browser.js"></script>
-<script>
-    if(window.commentConfig) {
-      window.commentConfig.id = 'Sun Jul 12 2020 10:34:58 GMT+0800'
-      window.commentConfig.owner = 'Edmund0A'
-      window.commentConfig.repo = ''
-      window.commentConfig.client_id = ''
-      window.commentConfig.client_secret = ''
-      window.commentConfig.redirect_uri = ''
-    } else {
-      window.commentConfig = {
-      	id: 'Sun Jul 12 2020 10:34:58 GMT+0800',
-        owner: 'Edmund0A',
-        repo: '',
-        client_id: '',
-        client_secret: '',
-        redirect_uri: ''
-      }
-    }
-</script>
-
-<script src="/js/comment/gitment.js"></script>
 
 
 </html>

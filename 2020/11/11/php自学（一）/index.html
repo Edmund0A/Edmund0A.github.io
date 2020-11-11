@@ -10,7 +10,7 @@
     
     
     
-    <title>sql注入基础回头 | Hexo</title>
+    <title>php自学（一） | Hexo</title>
     <link href="https://Edmund0A.github.io" rel="prefetch" />
 
     
@@ -156,19 +156,19 @@
         <i class="fa fa-home"></i>
         <a href="https://Edmund0A.github.io">Hexo</a>
         >
-        <span>sql注入基础回头</span>
+        <span>php自学（一）</span>
     </div>
     <!-- 大型设备详细文章 -->
     <div class="hidden-xs">
         <div class="title-article">
             <h1>
-                <a href="/2020/07/12/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%E5%9B%9E%E5%A4%B4/">sql注入基础回头</a>
+                <a href="/2020/11/11/php%E8%87%AA%E5%AD%A6%EF%BC%88%E4%B8%80%EF%BC%89/">php自学（一）</a>
             </h1>
         </div>
         <div class="tag-article">
             
             <span class="label label-gal">
-                <i class="fa fa-calendar"></i> 2020-07-12
+                <i class="fa fa-calendar"></i> 2020-11-11
             </span>
             
         </div>
@@ -178,11 +178,11 @@
         <center>
             <div class="title-article">
                 <h4>
-                    <a href="/2020/07/12/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%E5%9B%9E%E5%A4%B4/">sql注入基础回头</a>
+                    <a href="/2020/11/11/php%E8%87%AA%E5%AD%A6%EF%BC%88%E4%B8%80%EF%BC%89/">php自学（一）</a>
                 </h4>
             </div>
             <p>
-                <i class="fa fa-calendar"></i> 2020-07-12
+                <i class="fa fa-calendar"></i> 2020-11-11
             </p>
             <p>
                 
@@ -191,23 +191,40 @@
         </center>
     </div>
     <div class="content-article">
-        <p>🔺⚪▲</p>
-<h1 id="🔺sql注入的概念"><a href="#🔺sql注入的概念" class="headerlink" title="🔺sql注入的概念"></a><strong>🔺sql注入的概念</strong></h1><p> sql注入是指应用对于使用者所输入的非法恶意语句的审查未经过判断或过滤不严，导致使用者刻意将恶意sql查询或添加语句输入参数中，通过欺骗数据库进行非授权的恶意查询，进行解析攻击。</p>
-<h1 id="🔺web三层架构的解析"><a href="#🔺web三层架构的解析" class="headerlink" title="🔺web三层架构的解析"></a><strong>🔺web三层架构的解析</strong></h1><p>三层架构就是遵循符合“高内聚，低耦合”思想，将各个功能模块划分为<strong>表示层</strong>（UI）、<strong>业务逻辑层</strong>（BLL）和<strong>数据访问层</strong>（DAL）三层架构，各层之间采用接口相互访问，并通过<strong>对象模型的实体类</strong>作为数据传递的载体，不同的对象模型的实体类一般对应于数据库的不同表，实体类的属性与数据库表的字段名一致。（摘自<a href="https://baike.baidu.com/item/%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84/11031448?fr=aladdin" target="_blank" rel="noopener">百度百科词条</a>）</p>
-<h1 id="🔺sql注入原理"><a href="#🔺sql注入原理" class="headerlink" title="🔺sql注入原理"></a>🔺sql注入原理</h1><p>每当我们访问动态网页时, Web 服务器会向数据访问层发起 Sql 查询请求，如果权限验证通过就会执行 Sql 语句。结合用户的输入数据动态构造 Sql 语句，如果用户输入的数据被构造成恶意 Sql 代码，Web 应用又未对动态构造的 Sql 语句使用的参数进行审查，则会造成恶意语句的渗透，便是sql注入的基本形式。</p>
-<h2 id="⚪sql注入影响"><a href="#⚪sql注入影响" class="headerlink" title="⚪sql注入影响"></a>⚪sql注入影响</h2><p>▲ 攻击者不经授权便可获取到用户数据，借此盗取用户隐私信息；<br>▲ 若网站拥有写入权限，攻击者甚至可以写入木马，对网站造成极大损害；<br>▲ 攻击者拥有对其网站数据库的修改权限，可以肆意更改数据库中的内容；<br>▲ 攻击者可以通过其他步骤获取到服务器的最高权限，并通过后门等方法，对服务器进行控制修改与操作。</p>
-<h2 id="⚪sql注入常用语句"><a href="#⚪sql注入常用语句" class="headerlink" title="⚪sql注入常用语句"></a>⚪sql注入常用语句</h2><p>▲ 判断是否存在注入点</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">; <span class="keyword">and</span> <span class="number">1</span>=<span class="number">1</span> <span class="keyword">and</span> <span class="number">1</span>=<span class="number">2</span></span><br></pre></td></tr></table></figure>
-<p>▲ 猜表</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">and</span> <span class="number">0</span>&lt;&gt;(select count(*) from *) </span><br><span class="line"><span class="keyword">and</span> <span class="number">0</span>&lt;&gt;(select count(*) from admin) ---判断是否存在admin这张表</span><br></pre></td></tr></table></figure>
-<p>▲ 猜帐号数目（如果遇到0&lt; 返回正确页面 1&lt;返回错误页面说明帐号数目就是1个 ）</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">and</span> <span class="number">0</span>&lt;(select count(*) from admin) </span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>&lt;(select count(*) from admin)</span><br></pre></td></tr></table></figure>
-<p>▲ 猜解字段名称 （在len( ) 括号里面加上我们想到的字段名称. ）</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(*)&gt;<span class="number">0</span>)-- </span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(用户字段名称name)&gt;<span class="number">0</span>) </span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(_blank&gt;密码字段名称password)&gt;<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-<p>▲ 猜解各个字段的长度 （猜解长度就是把&gt;0变换 直到返回正确页面为止 ）</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(*)&gt;<span class="number">0</span>) </span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(name)&gt;<span class="number">6</span>) 错误 </span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(name)&gt;<span class="number">5</span>) 正确 长度是<span class="number">6</span> </span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(name)=<span class="number">6</span>) 正确</span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(password)&gt;<span class="number">11</span>) 正确 </span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(password)&gt;<span class="number">12</span>) 错误 长度是<span class="number">12</span> </span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>=(select count(*) from admin where len(password)=<span class="number">12</span>) 正确</span><br></pre></td></tr></table></figure>
-
-
+        <p>@[TOC]</p>
+<h1 id="🔺-前言"><a href="#🔺-前言" class="headerlink" title="🔺 前言"></a>🔺 前言</h1><p>在做web题目的时候发现许多涉及到php语言的部分，说明php语言在web题目的学习过程中还是占据有挺重要的地位的（详见前面几篇博客，基本是见了php就死）所以就开一个php学习的坑，希望自己能够尽快学习完php的基本知识，以便为以后web题目的练习打好基础！</p>
+<h1 id="🔺-什么是PHP"><a href="#🔺-什么是PHP" class="headerlink" title="🔺 什么是PHP"></a>🔺 什么是PHP</h1><ul>
+<li>PHP：Hypertext Preprocessor，是<strong>超文本预处理器</strong>的字母缩写。</li>
+<li>PHP是一种被广泛应用的开放源代码用途的脚本语言，它可以嵌入到HTML中，尤其适合用于web开发。</li>
+<li>与C语言或Perl语言不同，PHP并不是用大量的命令来编写程序以输出 HTML ，PHP 页面就是 HTML，只不过在其中嵌入了部分代码来执行命令。<h2 id="⚪-PHP的文件"><a href="#⚪-PHP的文件" class="headerlink" title="⚪ PHP的文件"></a>⚪ PHP的文件</h2></li>
+<li>PHP 文件可包含文本、HTML、JavaScript代码和 PHP 代码</li>
+<li>PHP 代码在服务器上执行，结果以纯 HTML 形式返回给浏览器</li>
+<li>PHP 文件的默认文件扩展名是 “.php”<h1 id="🔺-PHP的入门语法"><a href="#🔺-PHP的入门语法" class="headerlink" title="🔺 PHP的入门语法"></a>🔺 PHP的入门语法</h1>PHP 脚本以 <code>&lt;?php</code> 开始，以 <code>?&gt;</code> 结束；<br>比如一个可以输出字符的PHP文件代码如下：</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;h1&gt;My first PHP page&lt;/h1&gt;</span><br><span class="line"></span><br><span class="line">&lt;?php</span><br><span class="line">echo <span class="string">"Hello World!"</span>;</span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>注释语法：</strong><code>//</code> 前缀为单行注释<br><code>/*</code> 前缀和<code>*/</code>后缀为多行注释</p>
+<h1 id="🔺-PHP的变量"><a href="#🔺-PHP的变量" class="headerlink" title="🔺 PHP的变量"></a>🔺 PHP的变量</h1><p>php中的变量与其它语言一样，通过赋予字符值来使其拥有运算性质，被称作变量；<br>php通常通过这种方式来为变量赋值与运算：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$x=<span class="number">5</span>;</span><br><span class="line">$y=<span class="number">6</span>;</span><br><span class="line">$z=$x+$y;</span><br><span class="line">echo $z;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>通常，php语言遵守一个变量规则：</p>
+<ul>
+<li>变量以 $ 符号开始，后面跟着变量的名称</li>
+<li>变量名必须以字母或者下划线字符开始</li>
+<li>变量名只能包含字母数字字符以及下划线（A-z、0-9 和 _ ）</li>
+<li>变量名不能包含空格</li>
+<li>变量名<strong>区分大小写</strong>（这点尤为强调！$y 和 $Y 是算作两个不同的变量）</li>
+<li>变量在被第一次赋值时就被创建</li>
+<li>php语言算作一类弱语言，因而在我们创建并使用时不需要声明PHP变量的数据类型。</li>
+</ul>
+<h2 id="⚪函数变量的作用域"><a href="#⚪函数变量的作用域" class="headerlink" title="⚪函数变量的作用域"></a>⚪函数变量的作用域</h2><p>php变量的作用域分为四种：<strong>local（局部作用域），global（全局作用域），static（静态作用域），parameter（函数参数作用域）</strong>。</p>
+<h3 id="▲局部作用域（local）和全局作用域（global）"><a href="#▲局部作用域（local）和全局作用域（global）" class="headerlink" title="▲局部作用域（local）和全局作用域（global）"></a>▲局部作用域（<em>local</em>）和全局作用域（<em>global</em>）</h3><p>在php规定的变量分为局部变量和全局变量两种，其中在所有函数外部定义的变量拥有全局作用域，除了函数外可以被脚本中的任何部分访问；而如果想要在函数中访问一个全局变量则需要使用global关键字。<br>在PHP函数内部声明的变量是局部变量，仅仅能够在函数内部访问。<br>举个例子：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$x=<span class="number">5</span>; <span class="comment">// 全局变量</span></span><br><span class="line"></span><br><span class="line"><span class="function">function <span class="title">myTest</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $y=<span class="number">10</span>; <span class="comment">// 局部变量</span></span><br><span class="line">    echo <span class="string">"&lt;p&gt;测试函数内变量:&lt;p&gt;"</span>;</span><br><span class="line">    echo <span class="string">"变量 x 为: $x"</span>;</span><br><span class="line">    echo <span class="string">"&lt;br&gt;"</span>;</span><br><span class="line">    echo <span class="string">"变量 y 为: $y"</span>;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">myTest();</span><br><span class="line"></span><br><span class="line">echo <span class="string">"&lt;p&gt;测试函数外变量:&lt;p&gt;"</span>;</span><br><span class="line">echo <span class="string">"变量 x 为: $x"</span>;</span><br><span class="line">echo <span class="string">"&lt;br&gt;"</span>;</span><br><span class="line">echo <span class="string">"变量 y 为: $y"</span>;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>不难看出，在这个示例中，首先公布的变量x不属于任何一个函数，属于全局变量；而在函数内部规定出来的y则属于局部变量。因此最后只能成功输出x的值而不能够输出y的值。<br>当然，如果想要在函数内部访问到全局变量的值也不是不可以。<br><strong>global关键字是用于函数内部访问全局变量</strong>，如果想要在函数内部调用全局变量，则需要在函数中变量前加上global关键字。比如在函数中我们声明一个局部变量x可以直接输入 <code>$y</code> ，而声明全局变量就是 <code>global $x</code> 。而PHP还将所有全局变量储存在一个名为<code>$GLOBALS[index]</code> 的数组中 <em>（<strong>index</strong>保存变量的名称）</em> ，因此引用全局变量x还可以直接输入 <code>$GLOBALS[&#39;y&#39;]</code> ，该数组也可以直接用来更新全局变量。</p>
+<h3 id="▲-静态作用域（static）"><a href="#▲-静态作用域（static）" class="headerlink" title="▲ 静态作用域（static）"></a>▲ 静态作用域（static）</h3><p>该关键字运用于完成函数后对于某个局部变量的保存。当一个函数完成后想要保存局部变量x，此时，为了防止这个局部变量被删除，可以使用static关键字：<code>static  $x</code> 。<em>（这之后，每次调用该函数时，该变量都会保留上一次函数被调用时的值）</em><br>举例如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"><span class="function">function <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">static</span> $x=<span class="number">0</span>;<span class="comment">//静态声明赋予一个初始值0</span></span><br><span class="line">    echo $x . <span class="string">" ;</span></span><br><span class="line"><span class="string">    $x++;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">test();//第一次调用</span></span><br><span class="line"><span class="string">test();//第二次调用</span></span><br><span class="line"><span class="string">test();//第三次调用</span></span><br><span class="line"><span class="string">test();//第四次调用</span></span><br><span class="line"><span class="string">&gt;</span></span><br></pre></td></tr></table></figure>
+<p>其中可以看到，四次调用每次依次递增。</p>
+<h3 id="▲-参数作用域（parameter）"><a href="#▲-参数作用域（parameter）" class="headerlink" title="▲ 参数作用域（parameter）"></a>▲ 参数作用域（parameter）</h3><p>参数是通过调用代码将值传递给函数的局部变量。<br>关于局部变量和全局变量的优先级，因为在PHP中函数都有自己单独的作用域，因此在不声明这个变量之前，局部变量的优先级是大于全局变量的。在声明之后该变量就变成了局部变量，修改值的话全局变量的值也会被改变。</p>
+<h3 id="综合知识点举例"><a href="#综合知识点举例" class="headerlink" title="综合知识点举例"></a>综合知识点举例</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$a = <span class="number">10</span>;<span class="comment">//全局变量 1</span></span><br><span class="line">$b = <span class="number">5</span>; <span class="comment">//全局变量 2</span></span><br><span class="line"><span class="function">function <span class="title">test</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $a = <span class="number">15</span>;<span class="comment">// 声明一个局部变量a的值为15</span></span><br><span class="line">    $b = <span class="number">5</span>; <span class="comment">// 声明一个局部变量b的值为5</span></span><br><span class="line">    $z = $a-$b; <span class="comment">// z = 15 - 5 = 10</span></span><br><span class="line">    echo $z; <span class="comment">// z的值为10</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">test();</span><br><span class="line"></span><br><span class="line"><span class="function">function <span class="title">test1</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">         global $a,$b;</span><br><span class="line">         $a = <span class="number">15</span>;<span class="comment">// 在函数中声明全局变量a并将值改为15</span></span><br><span class="line">         $b = <span class="number">5</span>; <span class="comment">// 在函数中声明全局变量b并将值改为5</span></span><br><span class="line">         $z = $a-$b;</span><br><span class="line">         echo PHP_EOL;</span><br><span class="line">         echo $z;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">test1();</span><br><span class="line"></span><br><span class="line"><span class="function">function <span class="title">test2</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    global $a,$b;</span><br><span class="line">    $z= $a-$b; <span class="comment">//z= 15 - 10 = 10</span></span><br><span class="line">    echo PHP_EOL;</span><br><span class="line">    echo $z;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">test2();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>结果：<strong>10 10 10</strong></p>
 
     </div>
 </article>
@@ -218,7 +235,7 @@
 <script>
 	if(!window.commentConfig) {
       window.commentConfig = {}
-      window.commentConfig.title = 'sql注入基础回头'
+      window.commentConfig.title = 'php自学（一）'
     }
 </script>
 
@@ -360,13 +377,13 @@
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2020/02/15/%E6%9C%AC%E4%BA%BA%E7%9A%84%E9%A6%96%E6%AC%A1%E6%90%AD%E5%BB%BAhexo+github%E5%8D%9A%E5%AE%A2/">本人的首次搭建hexo+github博客</a>
+                    <a href="/2020/07/19/SQL%E6%B3%A8%E5%85%A5%20-%20-%20-%E7%8C%9C%E8%A7%A3%E5%AE%9E%E8%B7%B5/">SQL注入 - - -猜解实践</a>
                 </span>
             </li>
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2020/07/12/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%E5%9B%9E%E5%A4%B4/">sql注入基础回头</a>
+                    <a href="/2020/07/26/SQL%E6%B3%A8%E5%85%A5%E7%BB%95%E8%BF%87/">SQL注入绕过</a>
                 </span>
             </li>
             
@@ -378,7 +395,7 @@
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2020/08/16/%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5%202/">联合查询注入 2</a>
+                    <a href="/2020/08/08/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E6%9C%AC%E7%AC%94%E8%AE%B0_1/">sql注入基本笔记_1</a>
                 </span>
             </li>
             
@@ -390,7 +407,7 @@
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2020/09/21/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E9%A2%98%E7%9B%AE%E5%9B%9E%E9%A1%BE%EF%BC%88%E6%96%B0%E6%89%8B%E9%A2%98%E7%9B%AE%20%20%E4%B8%AD%EF%BC%89/">攻防世界题目回顾（新手题目  中）</a>
+                    <a href="/2020/10/04/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cweb%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%88Training-WWW-Robots%20%20%20%E2%80%BBunserialize3%EF%BC%89/">攻防世界web进阶篇（二）（Training-WWW-Robots   ※unserialize3）</a>
                 </span>
             </li>
             
@@ -423,17 +440,17 @@
 
                 
                 <li>
-                    <a href="/2020/07/12/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%E5%9B%9E%E5%A4%B4/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                    <a href="/2020/11/11/php%E8%87%AA%E5%AD%A6%EF%BC%88%E4%B8%80%EF%BC%89/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
                 </li>
                 
                 
                 <li>
-                    <a href="/2020/07/12/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%E5%9B%9E%E5%A4%B4/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                    <a href="/2020/11/11/php%E8%87%AA%E5%AD%A6%EF%BC%88%E4%B8%80%EF%BC%89/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
                 </li>
                 
                 
                 <li>
-                    <a href="/2020/07/12/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%E5%9B%9E%E5%A4%B4/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                    <a href="/2020/11/11/php%E8%87%AA%E5%AD%A6%EF%BC%88%E4%B8%80%EF%BC%89/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
                 </li>
                 
             </ul>
@@ -555,7 +572,7 @@
 <script src="https://myau.moe/js/comment/gitment.browser.js"></script>
 <script>
     if(window.commentConfig) {
-      window.commentConfig.id = 'Sun Jul 12 2020 10:34:58 GMT+0800'
+      window.commentConfig.id = 'Wed Nov 11 2020 20:27:16 GMT+0800'
       window.commentConfig.owner = 'Edmund0A'
       window.commentConfig.repo = ''
       window.commentConfig.client_id = ''
@@ -563,7 +580,7 @@
       window.commentConfig.redirect_uri = ''
     } else {
       window.commentConfig = {
-      	id: 'Sun Jul 12 2020 10:34:58 GMT+0800',
+      	id: 'Wed Nov 11 2020 20:27:16 GMT+0800',
         owner: 'Edmund0A',
         repo: '',
         client_id: '',
