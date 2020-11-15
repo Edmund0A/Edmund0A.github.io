@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="Edmund0A">
+    
+    
+    
+    
+    
+    
+    <title>php自学（二） | Hexo</title>
+    <link href="https://Edmund0A.github.io" rel="prefetch" />
+
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/aos.css">
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/js/jquery.min.js"></script>
+
+    
+<script src="/js/bootstrap.min.js"></script>
+
+    
+<script src="/js/aos.js"></script>
+
+    
+<script src="/js/highslide/highslide-full.min.js"></script>
+
+    
+<link rel="stylesheet" href="/js/highslide/highslide.css">
+
+    <style type="text/css">
+        @media (max-width: 768px) {
+            body {
+                background-color: #f0f0f0;
+                background: url('/imgs/xsbg.gif');
+                background-attachment: fixed;
+            }
+        }
+    </style>
+    
+    <!--<script type="text/javascript">
+      if (document.images) {
+        var avatar = new Image();
+        avatar.src = '/imgs/avatar.jpg'
+        var previews = 'preview1.jpg,preview2.jpg,preview3.jpg,preview4.jpg'.split(',')
+        var previewsPreLoad = []
+        for(var i = 0; i < length; i++) {
+          previewsPreLoad.push(new Image())
+          previewsPreLoad[previewsPreLoad.length - 1].src = '/imgs/preview' + previews[i]
+        }
+      }
+    </script>-->
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <!-- 背景轮播图功能 -->
+    <section class="hidden-xs">
+    <ul class="cb-slideshow">
+        <li><span>天若</span></li>
+        <li><span>有情</span></li>
+        <li><span>天亦老</span></li>
+        <li><span>我为</span></li>
+        <li><span>长者</span></li>
+        <li><span>续一秒</span></li>
+    </ul>
+</section>
+    <!-- 欧尼酱功能, 谁用谁知道 -->
+    
+    <header class="navbar navbar-inverse" id="gal-header">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target=".bs-navbar-collapse"
+                    aria-expanded="false">
+                <span class="fa fa-lg fa-reorder"></span>
+            </button>
+            <a href="https://Edmund0A.github.io">
+                
+                <style>
+                    #gal-header .navbar-brand {
+                        height: 54px;
+                        line-height: 24px;
+                        font-size: 28px;
+                        opacity: 1;
+                        background-color: rgba(0,0,0,0);
+                        text-shadow: 0 0 5px #fff,0 0 10px #fff,0 0 15px #fff,0 0 20px #228DFF,0 0 35px #228DFF,0 0 40px #228DFF,0 0 50px #228DFF,0 0 75px #228DFF;
+                    }
+                </style>
+                <!-- 这里使用文字(navbar_text or config.title) -->
+                <div class="navbar-brand">Hexo</div>
+                
+            </a>
+        </div>
+        <div class="collapse navbar-collapse bs-navbar-collapse">
+            <ul class="nav navbar-nav" id="menu-gal">
+                
+                
+                <li class="">
+                    <a href="/">
+                        <i class="fa fa-home"></i>首页
+                    </a>
+                </li>
+                
+                
+                
+                <li class="">
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>归档
+                    </a>
+                </li>
+                
+                
+                
+                
+                <li class="">
+                    <a href="/categories">
+                        <i class="fa fa-list"></i>分类
+                    </a>
+                </li>
+                
+                
+                
+                
+                
+                <li class="">
+                    <a href="/tags">
+                        <i class="fa fa-tags"></i>标签
+                    </a>
+                </li>
+                
+                
+                
+                
+                <li class="">
+                    <a href="/about">
+                        <i class="fa fa-user"></i>关于我
+                    </a>
+                </li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</header>
+    <div id="gal-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 gal-right" id="mainstay">
+                    
+<article class="article well article-body" id="article">
+    <div class="breadcrumb">
+        <i class="fa fa-home"></i>
+        <a href="https://Edmund0A.github.io">Hexo</a>
+        >
+        <span>php自学（二）</span>
+    </div>
+    <!-- 大型设备详细文章 -->
+    <div class="hidden-xs">
+        <div class="title-article">
+            <h1>
+                <a href="/2020/11/15/php%E8%87%AA%E5%AD%A6%EF%BC%88%E4%BA%8C%EF%BC%89/">php自学（二）</a>
+            </h1>
+        </div>
+        <div class="tag-article">
+            
+            <span class="label label-gal">
+                <i class="fa fa-calendar"></i> 2020-11-15
+            </span>
+            
+        </div>
+    </div>
+    <!-- 小型设备详细文章 -->
+    <div class="visible-xs">
+        <center>
+            <div class="title-article">
+                <h4>
+                    <a href="/2020/11/15/php%E8%87%AA%E5%AD%A6%EF%BC%88%E4%BA%8C%EF%BC%89/">php自学（二）</a>
+                </h4>
+            </div>
+            <p>
+                <i class="fa fa-calendar"></i> 2020-11-15
+            </p>
+            <p>
+                
+                
+            </p>
+        </center>
+    </div>
+    <div class="content-article">
+        <p>@[TOC]</p>
+<h1 id="🔺-PHP运用的常见语句"><a href="#🔺-PHP运用的常见语句" class="headerlink" title="🔺 PHP运用的常见语句"></a>🔺 PHP运用的常见语句</h1><h2 id="⚪-echo语句和print语句"><a href="#⚪-echo语句和print语句" class="headerlink" title="⚪ echo语句和print语句"></a>⚪ echo语句和print语句</h2><p>在PHP中有两种基本输出方式：echo和print</p>
+<h3 id="▲-PHP-echo和print语句的区别"><a href="#▲-PHP-echo和print语句的区别" class="headerlink" title="▲ PHP echo和print语句的区别"></a>▲ PHP echo和print语句的区别</h3><ul>
+<li>echo：可以输出一个或多个字符串</li>
+<li>print：只允许输出一个字符串，返回总值为1</li>
+<li>echo的输出速度比print要快，且echo没有返回值，而print有返回值1<h3 id="▲-echo语句"><a href="#▲-echo语句" class="headerlink" title="▲ echo语句"></a>▲ echo语句</h3>echo作为一个语言结构，使用时对加不加括号没有严格要求，如 <code>echo</code> 或 <code>echo()</code> 都是可以的。<br>使用echo命令输出字符串（字符串可以包含HTML标签） 举例：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">echo <span class="string">"&lt;h2&gt;echo语句&lt;/h2&gt;"</span>;</span><br><span class="line">echo <span class="string">"Hello world!&lt;br&gt;"</span>;</span><br><span class="line">echo <span class="string">"PHP语法&lt;br&gt;"</span>;</span><br><span class="line">echo <span class="string">"这是一个"</span>, <span class="string">"字符串，"</span>, <span class="string">"使用了"</span>, <span class="string">"多个"</span>, <span class="string">"参数。"</span>;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>输出结果：<br><img src="https://img-blog.csdnimg.cn/20201112191835282.png#pic_center" alt="echo语句"><br>运用echo语句还能输出变量和字符串 举例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$txt1=<span class="string">"学习 PHP"</span>;</span><br><span class="line">$txt2=<span class="string">"RUNOOB.COM"</span>;</span><br><span class="line">$cars=<span class="built_in">array</span>(<span class="string">"Volvo"</span>,<span class="string">"BMW"</span>,<span class="string">"Toyota"</span>);</span><br><span class="line"> </span><br><span class="line">echo $txt1;</span><br><span class="line">echo <span class="string">"&lt;br&gt;"</span>;</span><br><span class="line">echo <span class="string">"在 $txt2 学习 PHP "</span>;</span><br><span class="line">echo <span class="string">"&lt;br&gt;"</span>;</span><br><span class="line">echo <span class="string">"我车的品牌是 &#123;$cars[0]&#125;"</span>;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>输出结果：<br><img src="https://img-blog.csdnimg.cn/20201112192147974.png#pic_center" alt="echo"></p>
+<h3 id="▲-print语句"><a href="#▲-print语句" class="headerlink" title="▲ print语句"></a>▲ print语句</h3><p>print作为语言结构，与echo相同，对于使用括号与否也没有严格的规定。<br>使用print命令输出字符串（字符串可以包含HTML）的例子：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"><span class="built_in">print</span> <span class="string">"&lt;h2&gt;PHP 很有趣!&lt;/h2&gt;"</span>;</span><br><span class="line"><span class="built_in">print</span> <span class="string">"Hello world!&lt;br&gt;"</span>;</span><br><span class="line"><span class="built_in">print</span> <span class="string">"我要学习 PHP!"</span>;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>输出结果：<br><img src="https://img-blog.csdnimg.cn/20201115193623291.png#pic_center" alt="print"></p>
+<p>使用print命令输出变量和字符串：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$txt1=<span class="string">"学习 PHP"</span>;</span><br><span class="line">$txt2=<span class="string">"RUNOOB.COM"</span>;</span><br><span class="line">$cars=<span class="built_in">array</span>(<span class="string">"Volvo"</span>,<span class="string">"BMW"</span>,<span class="string">"Toyota"</span>);</span><br><span class="line"> </span><br><span class="line"><span class="built_in">print</span> $txt1;</span><br><span class="line"><span class="built_in">print</span> <span class="string">"&lt;br&gt;"</span>;</span><br><span class="line"><span class="built_in">print</span> <span class="string">"在 $txt2 学习 PHP "</span>;</span><br><span class="line"><span class="built_in">print</span> <span class="string">"&lt;br&gt;"</span>;</span><br><span class="line"><span class="built_in">print</span> <span class="string">"我车的品牌是 &#123;$cars[0]&#125;"</span>;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>输出结果：<br><img src="https://img-blog.csdnimg.cn/20201115193653904.png#pic_center" alt="print"><br>这之中可以发现用法基本和echo语句基本相同，在此不多赘述。</p>
+<h2 id="⚪-PHP-EOF-heredoc-PHP定界符"><a href="#⚪-PHP-EOF-heredoc-PHP定界符" class="headerlink" title="⚪ PHP EOF (heredoc PHP定界符)"></a>⚪ PHP EOF (heredoc PHP定界符)</h2><p>PHP EOF(heredoc)是一种在命令行shell（如sh、csh、ksh、bash、PowerShell和zsh）与程序语言（像Perl、PHP、Python和Ruby）里定义一个字符串的方法。通俗来讲，它的作用就是按照原样，包括换行格式等设置保持不变输出在其内部的东西。当使用它时需要注意几点要求：</p>
+<ol>
+<li>必须后接分号，否则编译通不过。</li>
+<li>EOF 可以用任意其它字符代替，只需保证结束标识与开始标识一致。</li>
+<li>结束标识必须顶格独自占一行(即必须从行首开始，前后不能衔接任何空白和字符)。</li>
+<li>开始标识可以不带引号或带单双引号，不带引号与带双引号效果一致，解释内嵌的变量和转义符号，带单引号则不解释内嵌的变量和转义符号。</li>
+<li>当内容需要内嵌引号（单引号或双引号）时，不需要加转义符，本身对单双引号转义，此处相当与q和qq的用法。</li>
+</ol>
+<p>这边用实例展示：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">echo &lt;&lt;&lt;EOF</span><br><span class="line">        &lt;h1&gt;我的第一个标题&lt;/h1&gt;</span><br><span class="line">        &lt;p&gt;我的第一个段落。&lt;/p&gt;</span><br><span class="line">EOF;</span><br><span class="line"><span class="comment">// 结束需要独立一行且前后不能空格</span></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>在这之中还要注意：</p>
+<ol>
+<li>以 <code>&lt;&lt;&lt;EOF</code> 开始标记开始，以 <code>EOF</code> 结束标记结束，<strong>结束标记必须顶头写</strong>，<strong>不能有缩进和空格</strong>，且在结束标记末尾要有分号 。</li>
+<li>开始标记和结束标记相同，比如常用大写的 EOT、EOD、EOF</li>
+<li>来表示，但是不只限于那几个(也可以用：JSON、HTML等)，只要保证开始标记和结束标记不在正文中出现即可。</li>
+<li>位于开始标记和结束标记之间的变量可以被正常解析，但是函数则不可以。在 heredoc 中，变量不需要用连接符 <code>.</code> 或 <code>,</code> 来拼接.。</li>
+</ol>
+<p>示例如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$name='runoob';</span><br><span class="line">$a=&lt;&lt;&lt;EOF</span><br><span class="line">    <span class="string">"abc"</span>$name</span><br><span class="line">    <span class="string">"123"</span></span><br><span class="line">EOF;</span><br><span class="line"> <span class="comment">//结束需要独立一行且前后不能有空格</span></span><br><span class="line"> ECHO $a;</span><br><span class="line"> ?&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="⚪-PHP数据类型"><a href="#⚪-PHP数据类型" class="headerlink" title="⚪ PHP数据类型"></a>⚪ PHP数据类型</h2><p>PHP主要的数据类型分为以下几类：</p>
+<ul>
+<li><strong>String（字符串）</strong></li>
+<li><strong>Integer（整型）</strong><br> 整型是一个没有小数的数字。整数需要遵守的规则：<br> 整数必须至少有一个数字 (0-9)<br> 整数不能包含逗号或空格<br> 整数是没有小数点的<br> 整数可以是正数或负数<br> 整型可以用三种格式来指定：十进制， 十六进制（     以 0x 为前缀）或八进制（前缀为 0）。<br> 在实例中测试不同的数字：<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">    &lt;?php </span><br><span class="line">$x = <span class="number">5985</span>;</span><br><span class="line">var_dump($x);</span><br><span class="line">echo <span class="string">"&lt;br&gt;"</span>; </span><br><span class="line">$x = <span class="number">-345</span>; <span class="comment">// 负数 </span></span><br><span class="line">var_dump($x);</span><br><span class="line">echo <span class="string">"&lt;br&gt;"</span>; </span><br><span class="line">$x = <span class="number">0x8C</span>; <span class="comment">// 十六进制数</span></span><br><span class="line">var_dump($x);</span><br><span class="line">echo <span class="string">"&lt;br&gt;"</span>;</span><br><span class="line">$x = <span class="number">047</span>; <span class="comment">// 八进制数</span></span><br><span class="line">var_dump($x);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+（其中，PHP var_dump()函数返回变量的数据类型和值。）</li>
+<li><strong>Float（浮点型）</strong><br>浮点数是带小数部分的数字，或是指数形式。<br>在实例中测试不同的数字：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">$x = <span class="number">10.365</span>;</span><br><span class="line">var_dump($x);</span><br><span class="line">echo <span class="string">"&lt;br&gt;"</span>; </span><br><span class="line">$x = <span class="number">2.4e3</span>;</span><br><span class="line">var_dump($x);</span><br><span class="line">echo <span class="string">"&lt;br&gt;"</span>; </span><br><span class="line">$x = <span class="number">8E-5</span>;</span><br><span class="line">var_dump($x);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>（其中，PHP var_dump()函数返回变量的数据类型和值。）</p>
+<ul>
+<li><p><strong>Boolean（布尔型）</strong><br>布尔型通常用于条件判断，可以是 TRUE 或 FALSE。<br>$x=true;<br>$y=false;</p>
+</li>
+<li><p><strong>Array（数组）</strong><br><em>（数组可以在一个变量中存储多个值）</em><br>在以下实例中创建了一个数组， 然后使用 PHP var_dump() 函数返回数组的数据类型和值：</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">$cars=<span class="built_in">array</span>(<span class="string">"Volvo"</span>,<span class="string">"BMW"</span>,<span class="string">"Toyota"</span>);</span><br><span class="line">var_dump($cars);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>Object（对象）</strong><br>对象数据类型也可以用于存储数据。<br>在 PHP 中，对象必须声明。<br>首先，你必须使用class关键字声明类对象。类是可以包含属性和方法的结构。<br>然后我们在类中定义数据类型，然后在实例化的类中使用数据类型：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  var $color;</span><br><span class="line">  function __construct($color=<span class="string">"green"</span>) &#123;</span><br><span class="line">    $<span class="keyword">this</span>-&gt;color = $color;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function">function <span class="title">what_color</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> $<span class="keyword">this</span>-&gt;color;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>以上实例中PHP关键字this就是指向当前对象实例的指针，不指向任何其他对象或类。</p>
+<ul>
+<li><strong>NULL（空值）</strong><br>NULL 值表示变量没有值。NULL 是数据类型为 NULL 的值。<br>NULL 值指明一个变量是否为空值。 同样可用于数据空值和NULL值的区别。<br>可以通过设置变量值为 NULL 来清空变量数据：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$x=<span class="string">"Hello world!"</span>;</span><br><span class="line">$x=null;</span><br><span class="line">var_dump($x);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>关于PHP字符串：</strong><br>一个字符串是一串字符的序列，可以将任何文本放在单引号和双引号中。</p>
+<h1 id="🔺-小结"><a href="#🔺-小结" class="headerlink" title="🔺 小结"></a>🔺 小结</h1><p>通过两次php语言入门级的初步认识，基本上对于PHP的低等运用有了头目，但是学习与否仅仅是一方面，接下来还是需要实战才能真正找出自己的缺点。对于PHP的短板一定要补好。</p>
+
+    </div>
+</article>
+
+
+<div id="comments-template"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script>
+	if(!window.commentConfig) {
+      window.commentConfig = {}
+      window.commentConfig.title = 'php自学（二）'
+    }
+</script>
+
+                </div>
+                <aside class="col-md-4 gal-left" id="sidebar">
+    <!-- 此为sidebar的搜索框, 非搜索结果页面 -->
+<aside id="sidebar-search">
+    <div class="search hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <form class="form-inline clearfix" id="search-form" method="get"
+              action="/search/index.html">
+            <input type="text" name="s" class="form-control" id="searchInput" placeholder="搜索文章~" autocomplete="off">
+            <button class="btn btn-danger btn-gal" type="submit">
+                <i class="fa fa-search"></i>
+            </button>
+        </form>
+    </div>
+</aside>
+    <aside id="sidebar-author">
+    <div class="panel panel-gal" data-aos="flip-right" data-aos-duration="3000">
+        <div class="panel-heading" style="text-align: center">
+            <i class="fa fa-quote-left"></i>
+            Edmund0A
+            <i class="fa fa-quote-right"></i>
+        </div>
+        <div class="author-panel text-center">
+            <img src="/imgs/avatar.jpg" width="140" height="140"
+                 alt="个人头像" class="author-image">
+            <p class="author-description"></p>
+        </div>
+    </div>
+</aside>
+    
+    <aside id="sidebar-recent_comments">
+    <div class="panel panel-gal recent hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <div class="panel-heading">
+            <i class="fa fa-comments"></i>
+            最新评论
+            <i class="fa fa-times-circle panel-remove"></i>
+            <i class="fa fa-chevron-circle-up panel-toggle"></i>
+        </div>
+        <ul class="list-group list-group-flush"></ul>
+    </div>
+</aside>
+    
+    <!-- 要配置好leancloud才能开启此小工具 -->
+    
+    
+    <aside id="sidebar-recent_posts">
+    <div class="panel panel-gal recent hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <div class="panel-heading">
+            <i class="fa fa-refresh"></i>
+            近期文章
+            <i class="fa fa-times-circle panel-remove"></i>
+            <i class="fa fa-chevron-circle-up panel-toggle"></i>
+        </div>
+        <ul class="list-group list-group-flush">
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2020/11/15/php%E8%87%AA%E5%AD%A6%EF%BC%88%E4%BA%8C%EF%BC%89/">php自学（二）</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2020/11/11/php%E8%87%AA%E5%AD%A6%EF%BC%88%E4%B8%80%EF%BC%89/">php自学（一）</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2020/10/12/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cweb%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%88Web_php_unserialize%EF%BC%89%EF%BC%88upload1%EF%BC%89/">攻防世界web进阶篇（三）（Web_php_unserialize）（upload1）</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2020/10/04/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cweb%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%88Training-WWW-Robots%20%20%20%E2%80%BBunserialize3%EF%BC%89/">攻防世界web进阶篇（二）（Training-WWW-Robots   ※unserialize3）</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2020/09/30/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cweb%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%88baby_web%20%20%20warmup%EF%BC%89/">攻防世界web进阶篇（一）（baby_web   warmup）</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2020/09/21/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E9%A2%98%E7%9B%AE%E5%9B%9E%E9%A1%BE%EF%BC%88%E6%96%B0%E6%89%8B%E9%A2%98%E7%9B%AE%20%20%E4%B8%AD%EF%BC%89/">攻防世界题目回顾（新手题目  中）</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2020/09/19/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E9%A2%98%E7%9B%AE%E5%9B%9E%E9%A1%BE%EF%BC%88%E6%96%B0%E6%89%8B%E9%A2%98%E7%9B%AE%20%20%E4%B8%8A%EF%BC%89/">攻防世界题目回顾（新手题目  上）</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2020/08/16/%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5%202/">联合查询注入 2</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2020/08/08/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E6%9C%AC%E7%AC%94%E8%AE%B0_1/">sql注入基本笔记_1</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2020/08/01/SQL%E6%B3%A8%E5%85%A5%E7%82%B9%E7%9A%84%E5%88%A4%E6%96%AD/">SQL注入点的判断</a>
+                </span>
+            </li>
+            
+        </ul>
+    </div>
+</aside>
+    
+    
+    <aside id="sidebar-rand_posts">
+    <div class="panel panel-gal recent hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <div class="panel-heading">
+            <i class="fa fa-refresh"></i>
+            随机文章
+            <i class="fa fa-times-circle panel-remove"></i>
+            <i class="fa fa-chevron-circle-up panel-toggle"></i>
+        </div>
+        <ul class="list-group list-group-flush">
+            
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2020/02/15/%E6%9C%AC%E4%BA%BA%E7%9A%84%E9%A6%96%E6%AC%A1%E6%90%AD%E5%BB%BAhexo+github%E5%8D%9A%E5%AE%A2/">本人的首次搭建hexo+github博客</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2020/07/26/SQL%E6%B3%A8%E5%85%A5%E7%BB%95%E8%BF%87/">SQL注入绕过</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2020/08/01/SQL%E6%B3%A8%E5%85%A5%E7%82%B9%E7%9A%84%E5%88%A4%E6%96%AD/">SQL注入点的判断</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2020/08/08/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E6%9C%AC%E7%AC%94%E8%AE%B0_1/">sql注入基本笔记_1</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2020/08/16/%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5%202/">联合查询注入 2</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2020/09/19/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E9%A2%98%E7%9B%AE%E5%9B%9E%E9%A1%BE%EF%BC%88%E6%96%B0%E6%89%8B%E9%A2%98%E7%9B%AE%20%20%E4%B8%8A%EF%BC%89/">攻防世界题目回顾（新手题目  上）</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2020/09/21/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E9%A2%98%E7%9B%AE%E5%9B%9E%E9%A1%BE%EF%BC%88%E6%96%B0%E6%89%8B%E9%A2%98%E7%9B%AE%20%20%E4%B8%AD%EF%BC%89/">攻防世界题目回顾（新手题目  中）</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2020/10/04/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cweb%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%88Training-WWW-Robots%20%20%20%E2%80%BBunserialize3%EF%BC%89/">攻防世界web进阶篇（二）（Training-WWW-Robots   ※unserialize3）</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2020/09/30/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cweb%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%88baby_web%20%20%20warmup%EF%BC%89/">攻防世界web进阶篇（一）（baby_web   warmup）</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2020/11/11/php%E8%87%AA%E5%AD%A6%EF%BC%88%E4%B8%80%EF%BC%89/">php自学（一）</a>
+                </span>
+            </li>
+            
+        </ul>
+    </div>
+</aside>
+    
+    
+    <aside id="gal-sets">
+        <div class="panel panel-gal hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+            <ul class="nav nav-pills pills-gal">
+
+                
+                <li>
+                    <a href="/2020/11/15/php%E8%87%AA%E5%AD%A6%EF%BC%88%E4%BA%8C%EF%BC%89/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                </li>
+                
+                
+                <li>
+                    <a href="/2020/11/15/php%E8%87%AA%E5%AD%A6%EF%BC%88%E4%BA%8C%EF%BC%89/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                </li>
+                
+                
+                <li>
+                    <a href="/2020/11/15/php%E8%87%AA%E5%AD%A6%EF%BC%88%E4%BA%8C%EF%BC%89/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                </li>
+                
+            </ul>
+            <div class="tab-content">
+                
+                <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
+    
+</div>
+                
+                
+                <div class="friend-links tab-pane nav bs-sidenav fade" id="sidebar-friend-links">
+    
+    <li>
+        <a href="http://kdays.net/days/" target="_blank">KDays Forum</a>
+    </li>
+    
+    <li>
+        <a href="https://kamuxiy.github.io/" target="_blank">Kamuxiy的小窝</a>
+    </li>
+    
+    <li>
+        <a href="http://www.moe123.com/" target="_blank">萌导航</a>
+    </li>
+    
+</div>
+                
+                
+                <div class="links tab-pane nav bs-sidenav fade" id="sidebar-links">
+    
+    <li>
+        <a href="https://github.com/ZEROKISEKI/" target="_blank">Github</a>
+    </li>
+    
+    <li>
+        <a href="https://coding.net/u/SORA1" target="_blank">Coding</a>
+    </li>
+    
+    <li>
+        <a href="https://www.zhihu.com/people/aonosora/activities" target="_blank">知乎</a>
+    </li>
+    
+</div>
+                
+            </div>
+        </div>
+    </aside>
+    
+</aside>
+            </div>
+        </div>
+    </div>
+    <footer id="gal-footer">
+    <div class="container">
+        Copyright © 2018 Edmund0A Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.&nbsp;Theme by <a href="https://github.com/ZEROKISEKI" target="_blank">AONOSORA</a>
+    </div>
+</footer>
+
+<!-- 回到顶端 -->
+<div id="gal-gotop">
+    <i class="fa fa-angle-up"></i>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+
+<script src="/js/activate-power-mode.js"></script>
+
+<script>
+
+    // 配置highslide
+	hs.graphicsDir = '/js/highslide/graphics/'
+    hs.outlineType = "rounded-white";
+    hs.dimmingOpacity = 0.8;
+    hs.outlineWhileAnimating = true;
+    hs.showCredits = false;
+    hs.captionEval = "this.thumb.alt";
+    hs.numberPosition = "caption";
+    hs.align = "center";
+    hs.transitions = ["expand", "crossfade"];
+    hs.lang.number = '共%2张图, 当前是第%1张';
+    hs.addSlideshow({
+      interval: 5000,
+      repeat: true,
+      useControls: true,
+      fixedControls: "fit",
+      overlayOptions: {
+        opacity: 0.75,
+        position: "bottom center",
+        hideOnMouseOut: true
+      }
+    })
+
+    // 初始化aos
+    AOS.init({
+      duration: 1000,
+      delay: 0,
+      easing: 'ease-out-back'
+    });
+
+</script>
+<script>
+	POWERMODE.colorful = 'true';    // make power mode colorful
+	POWERMODE.shake = 'true';       // turn off shake
+	// TODO 这里根据具体情况修改
+	document.body.addEventListener('input', POWERMODE);
+</script>
+<script>
+    window.slideConfig = {
+      prefix: '/imgs/slide/background',
+      ext: 'jpg',
+      maxCount: '6'
+    }
+</script>
+
+<script src="/js/hs.js"></script>
+<script src="/js/blog.js"></script>
+
+
+
+
+<script src="https://myau.moe/js/comment/gitment.browser.js"></script>
+<script>
+    if(window.commentConfig) {
+      window.commentConfig.id = 'Sun Nov 15 2020 21:02:45 GMT+0800'
+      window.commentConfig.owner = 'Edmund0A'
+      window.commentConfig.repo = ''
+      window.commentConfig.client_id = ''
+      window.commentConfig.client_secret = ''
+      window.commentConfig.redirect_uri = ''
+    } else {
+      window.commentConfig = {
+      	id: 'Sun Nov 15 2020 21:02:45 GMT+0800',
+        owner: 'Edmund0A',
+        repo: '',
+        client_id: '',
+        client_secret: '',
+        redirect_uri: ''
+      }
+    }
+</script>
+
+<script src="/js/comment/gitment.js"></script>
+
+
+</html>
+
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+<script type="text/javascript" src="/js/fireworks.js"></script>
+
+<!-- 雪花特效 -->
+<script type="text/javascript" src="\js\snow.js"></script>
